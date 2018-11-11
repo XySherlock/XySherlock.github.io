@@ -3,24 +3,183 @@
   
     
     <entry>
-      <title>postTest</title>
-      <link href="/2018/11/07/postTest/"/>
-      <url>/2018/11/07/postTest/</url>
+      <title>Welcome</title>
+      <link href="/2018/11/11/hello-world/"/>
+      <url>/2018/11/11/hello-world/</url>
       
-        <content type="html"><![CDATA[<p>这玩意是个测试 我觉得布星</p>]]></content>
+        <content type="html"><![CDATA[<p>我是一个来自中国成都的二进制学习者。目前在学习逆向的过程中。水平有限，欢迎交流。</p><p>除了二进制以外的爱好是兵击（hema）和贝斯。</p><p>拼尽全力 然后 剩下的事情就是命运说了算了。</p>]]></content>
       
       
       
     </entry>
     
     <entry>
-      <title>Hello World</title>
-      <link href="/2018/11/07/hello-world/"/>
-      <url>/2018/11/07/hello-world/</url>
+      <title>181004(隐藏进程)</title>
+      <link href="/2018/10/04/181004/"/>
+      <url>/2018/10/04/181004/</url>
       
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<h3 id="一、隐藏进程："><a href="#一、隐藏进程：" class="headerlink" title="一、隐藏进程："></a>一、隐藏进程：</h3><p>隐藏进程：隐藏特定进程的技术（stealth process），专业术语叫Rootkit，指通过修改（Hooking）系统内核来隐藏进程、文件、注册表的一种技术。<br>IAT钩取通过操作进程的特定IAT值来实现API钩取，而API代码修改技术则将API代码的前五个字节修改为JMP XXXXXXXX来钩取API。<br>（1）正常调用API时<br>调用API时，首先使用CALL 指令调用API，在相应API执行完毕后，返回到调用代码的下一条指令的地址处。<br>（2）钩取之后：</p><p>首先把dll注入目标进程，API起始地址5个字节代码被修改为JMP XXXXXXXX（仅修改五个字节），在我们的XXXXXXXX的位置,首先把APi修改回原样然后调用一次，之后钩取。<br>注：当API的前五个字节是我们修改过后的时，也即API被钩取。<br>    使用API代码修改技术可以钩取进程中使用的任意API。要钩取的API代码长度要大于五个字节但是所有API代码长度都大于5个字节。</p><p>进程隐藏，用户模式下最常用的是ntdll.ZwQuery-SystemInformation()API钩取技术。</p><p>为了隐藏某个特定进程，要潜入其他所有进程内存，钩取相关API。</p><p>用户模式下检测进程的API分为2类<br>1、    CreateToolhelp32Snapshot()&amp;EnumProcess()<br>2、    ZwQuerySystemInformation()</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180921（计算器中显示字）</title>
+      <link href="/2018/09/21/180921-1/"/>
+      <url>/2018/09/21/180921-1/</url>
+      
+        <content type="html"><![CDATA[<p>通过DLL注入实现IAT钩取的技术。较为好实现，但是如果目标API不在目标进程IAT中，就无法使用该技术.(动态加载dll=凉凉)</p><p>为了确认需要钩取的API，可以使用PEView查看导入的API，然后对API进行文档查询.</p><p>查询发现计算器的SetWIndowTextW()、SetDlgItemTextW()比较引人注目（？？？），而后者又调用了前者，所以我们假设只要钩取前者就ＯＫ．</p><p>（ＡＰＩ后面跟的是Ｗ就是说是宽字符（Ｗｉｄｅ　character）版本．若后面跟的是Ａ则是ＡＳＣＩＩ码字符版本。宽字符说的是Ｕｎｉｃｏｄｅ码。）<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092101.png" alt="XySher"><br>跟着流程查看栈窗口。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092102.png" alt="XySher"><br>覆写时要逆序进行。每个Ｕｎｉｃｏｄｅ中的汉字占２个字节<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092103.png" alt="XySher"><br>程序开始时，ＰＥ装载器会将ｕｓｅｒ３２．ＳｅｔＷｉｎｄｏｗＴｅｘｔＷ（）ＡＰＩ地址记录到该地址（０１００１１１０），该地址是ＩＡＴ区域。</p><p>而我们钩取ＩＡＴ过后，将ＩＡＴ保存的ＡＰＩ起始地址变为用户函数的起始地址。</p><p>像这样，先向目标进程注入用户ＤＬＬ，然后在进程的ＩＡＴ区域中更改４个字节大小的地址，就可以轻松钩取指定ＡＰＩ。这种技术也称为ＩＡＴ钩取技术。</p><p>练习实例<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092104.png" alt="XySher"><br>诶这次居然成了　舒服<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092105.png" alt="XySher"><br>．．．下载下来的是原版　难免　难免．</p><p>在实际操作中，必须先确定提供ＡＰＩ的ＤＬＬ已经正常加载到相应进程，如果相应ＡＰＩ在钩取前尚未被加载，则应该先调用ＬｏａｄＬｉｂｒａｒｙ（）ＡＰＩ加载它。</p><p>把数字和中文进行１：１的对应可以不加任何修改地使用原缓冲区。</p><p>在IAT中查找到user23.dll对应的IID后，在IAT中查找SetWindowTextW API的位置，然后修改其中内容，从而实现对API的钩取。<br>MySetWindowTextW（）函数主要有2个功能，它首先将阿拉伯数字转换为中文数字（字符串），然后调用原来的user32.SetWindowTextW()API。</p><p>隐藏进程<br>全局钩取（Global Hooking），能钩取所有进程。<br>修改API代码（Code Patch）实现API钩取。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180920(记事本WriteFileAPI钩取+调试器)</title>
+      <link href="/2018/09/20/180920/"/>
+      <url>/2018/09/20/180920/</url>
+      
+        <content type="html"><![CDATA[<h1 id="记事本WriteFileAPI钩取"><a href="#记事本WriteFileAPI钩取" class="headerlink" title="记事本WriteFileAPI钩取"></a>记事本WriteFileAPI钩取</h1><p>调试器（Debugger）进行调试的程序<br>被调试者（Debuggee）：被调试的程序<br>调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对<font color="#ff0000" size="3">寄存器与内存</font>的<font color="#ff0000" size="3">所有</font>访问权限。<br>调试器无法处理或者不关心的调试事件最终由OS处理。<br>EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。代码调试遇到INT3指令即中断运行，异常事件被传送到调试器。</p><p>实验中首先将notepad用od打开，然后进行一次操作，在od中使用api设置断点手法，通过对进程栈的查看找到数据缓冲区的地址，可以进而通过对目标地址内容的操作达到对程序运行的字符串的修改.我们通过这种方法得知了我们应该修改被调试进程内存的哪一部分。</p><p>注意我们在设置断点后，起始地址遇到INT3（0xCC）指令就，EIP的值会增加1个字节.（被调试者的地址因此改变了），但OD等调试器不会显示INT3指令，会自动把字节恢复。</p><p>为了防止程序执行流陷入死循环，应该脱钩，即修改起始地址处的0xCC为0x6A，取消对API的钩取。<br>通过DebugActiveProcess()API将调试器附加到该运行的进程上.<br>WaitForDebugEvent（）发生调试事件，就会将相关事件信息设置到其第一个参数的变量，然后立刻返回。<br>ReadProcessMemory()来获取第一个字节并暂时存储，WriteProcessMemory()来把第一个字节下断点。</p><p>脱钩过程不是必须的，可以取消对相关API的调用，也可以调用用户自定义的函数.<br>Windows OS是一个多线程（multi-thread）操作系统，同一进程 可以同时运行多个线程。<br>必须在调试器终止前“脱钩”</p><h1 id="调试器"><a href="#调试器" class="headerlink" title="调试器"></a>调试器</h1><h3 id="WinDbg"><a href="#WinDbg" class="headerlink" title="WinDbg"></a>WinDbg</h3><p>OD和IDA pro都是用户态调试器，WinDbg不仅是用户态调试器，还是内核态调试器，主要用于内核模式调试。可以用来直接下载系统文件符号（Symbol），获取系统内部结构体及API的相关信息。还能用来读取、分析windows OS的转储文件。<br>    图形用户界面比较差。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180919(API钩取)</title>
+      <link href="/2018/09/19/180919/"/>
+      <url>/2018/09/19/180919/</url>
+      
+        <content type="html"><![CDATA[<h1 id="钩取"><a href="#钩取" class="headerlink" title="钩取"></a>钩取</h1><h3 id="一、钩取"><a href="#一、钩取" class="headerlink" title="一、钩取"></a>一、钩取</h3><p>钩取是一种截取信息，更改程序执行流向、添加新功能的技术。<br>API（Application Programming Interface，应用程序编程接口）。用户使用系统资源时，通过微软提供的Win32API向系统内核（Kernel）申请。<br>钩取API可以①自由选择和api调用前后使用钩子代码②查看或操作传入API的参数或API的返回值③取消对API的调用，或更改执行流<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091901.png" alt="XySher"><br>调试器拥有被调试进程的所有权限！<br>代码注入更难以被杀毒软件检测到。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180918(使用汇编编写注入代码)</title>
+      <link href="/2018/09/18/180918/"/>
+      <url>/2018/09/18/180918/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用汇编编写注入代码"><a href="#使用汇编编写注入代码" class="headerlink" title="使用汇编编写注入代码"></a>使用汇编编写注入代码</h1><h3 id="一、目标："><a href="#一、目标：" class="headerlink" title="一、目标："></a>一、目标：</h3><p>使用汇编可以生成比C语言更自由、更灵活的代码。将纯汇编写的ThreadProc()函数注入目标进程。</p><h3 id="二、OD汇编"><a href="#二、OD汇编" class="headerlink" title="二、OD汇编"></a>二、OD汇编</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918001.png" alt="XySher"><br>Ctrl+G能点击这个NewOriginhere，也就是我们的 此处为EIP选项。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918002.png" alt="XySher"><br>(原来空格打游戏是跳来跳去，总按，现在玩逆向，空格改指令，快乐的1p。)<br>勾选这个会把输入代码比已有代码段的地方填充为NOP（No Operation）指令，以整体对齐代码(Code Alignment).<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918003.png" alt="XySher"><br>照着书上填完的汇编代码红了一片…<br>把字符串填了个XySherlock然后为了保持大小填了两个00 按书上对应的灰色区域就是这里的<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918004.png" alt="XySher"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918005.png" alt="XySher"><br>我们需要先点击这个分析视为再分析才有效<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918006.png" alt="XySher"><br>嘿嘿，快乐。</p><p>在后面的操作中发现了一个小小的有趣的地方<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918007.png" alt="XySher"><br>在连续打入感叹号的时候会有一条被识别为 and dword ptr ds:[ecx],esp.<br>这个地方如果开了dep就会将一个部分标记为不可执行，如果没开dep的话可以进行一下利用，输入3的倍数余2的“！”来在这个位置添加一个and dword ptr ds:[ecx],esp指令</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180918(代码注入)</title>
+      <link href="/2018/09/18/postTest/"/>
+      <url>/2018/09/18/postTest/</url>
+      
+        <content type="html"><![CDATA[<h1 id="代码注入-Code-Injection"><a href="#代码注入-Code-Injection" class="headerlink" title="代码注入(Code Injection)"></a>代码注入(Code Injection)</h1><h3 id="一、代码注入"><a href="#一、代码注入" class="headerlink" title="一、代码注入"></a>一、代码注入</h3><p>代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。<br>这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下<br>    HANDLE WINAPI CreateRemoteThread(<br>    <strong>in HANDLE hProcess,    </strong>in LPSECURITY_ATTRIBUTES lpThreadAttributes,<br>    <strong>in SIZE_T dwStackSize,    </strong>in LPTHREAD_START_ROUTINE lpStartAddress,<br>    <strong>in LPVOID lpParameter,    </strong>in DWORD dwCreationFlags,<br>    __out LPDWORD lpThreadId<br>    );<br>Dll注入处就曾说ThreadProc（）和LoadLibrary（）都有一个4字节的参数，并返回一个4字节的值。通过CreateRemoteThread（）驱使目标进程调用LoadLibrary（）函数可以加载指定的DLL文件<br>代码注入相比DLL注入要更方便，考虑的事情更少，而且几乎不会留下任何痕迹。</p><h3 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091801.png" alt="XySher"><br>跟着书上做的实验notepad的pid是C4<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091802.png" alt="XySher"><br>又一个没跑成的实验==行吧 跟着源码走一遍<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091803.png" alt="XySher"><br>    main()函数调用了传入dwPID的InjectCode函数。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091804.png" alt="XySher"><br>直接注入ThreadProc（）进程会导致代码引用地址的内容并不存在于目标进程而出现错误。所以必须同时注入相关字符串以及API地址。（所以本程序中用了THREAD_PARAM结构体接收数据）<br>在InjectCode（）函数中，设置好THREAD_PARAM结构体，然后调用api为data与code分配内存，并将它们注入目标进程，最后调用CreateRemoteThread（）API，执行远程线程。</p><h3 id="三、代码注入调试练习"><a href="#三、代码注入调试练习" class="headerlink" title="三、代码注入调试练习"></a>三、代码注入调试练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091805.png" alt="XySher"><br>Debugging option是这里的<br>勾选过后打开<br>代码注入还是失败，跟着书上找。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180917（PE Tools）</title>
+      <link href="/2018/09/17/180917/"/>
+      <url>/2018/09/17/180917/</url>
+      
+        <content type="html"><![CDATA[<p>上那个网站发现好像挂了然后就google了一下，好像改成在github的开源项目了<br>看了一下吾爱破解的xp虚拟机还真有 诶毛熊nb<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091701.png" alt="XySher"><br>PE Tools获取<font color="#ff0000" size="3">运行中进程</font>列表，并将之显示在主窗口中。（也显示pid）petools拥有进程内存转储功能。</p><h3 id="一、进程内存转储"><a href="#一、进程内存转储" class="headerlink" title="一、进程内存转储"></a>一、进程内存转储</h3><p>转储（dump）就，将内存中的内容转存到文件。<br>可以通过使用反转储技术来给转储带来困难。<br>通过转储可以比调试器更快速简单的查看字符串。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091702.png" alt="XySher"><br>我转储我自己==<br>完整转储(DumpFull)从ImageBase转储SizeOfImage大小的区域<br>部分转储（DumpPartial）从指定地址开始转储指定大小部分 （可以自行设置起点和长度）<br>区域转储(DumpRegion)转储状态标识为COMMIT的内存区域。</p><h3 id="二、PE编辑器"><a href="#二、PE编辑器" class="headerlink" title="二、PE编辑器"></a>二、PE编辑器</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091703.png" alt="XySher"><br>点击了转存之后，（吾爱破解是真狠啊汉化的到位）</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180911（DLL注入）</title>
+      <link href="/2018/09/11/180911/"/>
+      <url>/2018/09/11/180911/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、DLL注入"><a href="#一、DLL注入" class="headerlink" title="一、DLL注入"></a>一、DLL注入</h1><p>从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。<br>DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。<br>DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的DllMain（）函数。</p><h1 id="二、练习myhack-dll"><a href="#二、练习myhack-dll" class="headerlink" title="二、练习myhack.dll"></a>二、练习myhack.dll</h1><p>1、打开虚拟机用记事本打开一个新建txt，用Process Explorer发现pid是960<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091101.png" alt="Image"><br>2、    按照书上所说<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091102.png" alt="Image"><br>     好的吧…也没下载到index.html 看来注入失败了 用本地试一下<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091103.png" alt="Image"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091104.png" alt="Image"><br>      行的吧，看来被拦截下来了==</p><p>但是根据对书上内容的学习，我们知道了借助创建远程线程的方法可以成功“渗透”指定进程，进而可以随意操作</p><p>源代码实例<br>Tchar.h中的tchar在unicode下是wchar（双字符），而普通是char。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180907（windows消息钩取）</title>
+      <link href="/2018/09/07/180907/"/>
+      <url>/2018/09/07/180907/</url>
+      
+        <content type="html"><![CDATA[<p>#一、钩子<br>Hook，即钩子。<br>偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）<br>GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。</p><p>键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相应的[application message queue]中，应用程序发现新消息，调用相应事件处理程序处理。</p><p>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。<br>DLL是Dynamic Link Library的缩写，意为动态链接库。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可有多个DLL文件，一个DLL文件也可能被几个应用程序所共用，这样的DLL文件被称为共享DLL文件。<br>在windows内存中，每个文件在内存中被os使用句柄来标识。应用程序被运行时，就会使得每一个可执行文件或者dll文件拥有一个独一无二的实例句柄</p><p>Hook procedure（钩子过程）是由操作系统调用的回调函数。安装消息钩子时，“钩子”需要存在某个dll内部，且dll的实例句柄（instance handle）即是hMod。<br>若挂钩线程ID（dwThreadID）是0那么是全局钩子（Global Hook）。影响全部进程<br>当使用SetWindowsHookEx()设置好钩子之后，生成指定消息系统会将相关的dll文件强制注入（injection）相应进程，然后调用“钩子”过程。</p><p>#二、键盘消息钩取练习<br>(跟书上相同)</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>180626（内嵌补丁）</title>
+      <link href="/2018/06/26/180626/"/>
+      <url>/2018/06/26/180626/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、内嵌补丁（Inline-Patch）"><a href="#一、内嵌补丁（Inline-Patch）" class="headerlink" title="一、内嵌补丁（Inline Patch）"></a>一、内嵌补丁（Inline Patch）</h1><p>它是“内嵌代码补丁“（Inline Code Patch）的简称。常用于对象程序经过运行时压缩（加密处理）而难以修改的情况。<br>运行时压缩代码的Ep代码先将加密的OEP代码解密，然后再跳转到OEP代码处。<br>内嵌补丁在文件设置被称为“洞穴代码”的“补丁代码”，在EP代码解密后修改JMP指令跳转到洞穴代码的运行。<br>把特定地址区域的值加和后存储到寄存器中，将寄存器中的值与既定的值进行比较，这个值叫校验和（计算所得），若相同则跳转到OEP处，不同则输出错误信息。</p><h1 id="二、Patchme练习"><a href="#二、Patchme练习" class="headerlink" title="二、Patchme练习"></a>二、Patchme练习</h1><p>在书上的操作基础上额外几个基本的小操作。<br>1、    在循环的地方看od循环结束的第一条指令下断点（F2）然后F4运行到目标指令（当红色的地址变成了白底红字则为跑到了该断点。<br>2、    在运行过加密的指令后od不会进行重新分析，所以当我们抵达了一个看起来就像data段的地方时要右键点击点击分析。这样od将会重新分析，显示出已经解密过的代码段。<br>注意：函数传参的参数遵循小端序，传参顺序和我们看见的参数push进入的顺序是相反的。<br>3、    内嵌补丁代码设置位置<br>（1）    （补丁代码较少）设置到文件的空白区域<br>（2）    拓展最后节区后设置<br>（3）    添加新节区后设置<br>注意：为了在程序中进行解密处理，一定要在节区头添加可写属性，获得相应内存的可写权限（当对无写权限的内存进行“写”操作时，会引发非法访问异常）<br>    方法使用的空白区域可能被程序加密了，需要根据程序加密方式对我们的cave code也加密过后写入，否则经过解密的代码就不是我们想要写入的代码了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
       
     </entry>
     

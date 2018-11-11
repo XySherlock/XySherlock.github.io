@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>归档: 2018 | XySherlock&#39;s Secret Base</title>
+  <title>180920(记事本WriteFileAPI钩取+调试器) | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XySherlock&#39;s Secret Base">
-<meta property="og:url" content="https://XySherlock.github.io/archives/2018/index.html">
+  <meta name="description" content="记事本WriteFileAPI钩取调试器（Debugger）进行调试的程序被调试者（Debuggee）：被调试的程序调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对寄存器与内存的所有访问权限。调试器无法处理或者不关心的调试事件最终由OS处理。EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。">
+<meta name="keywords" content="reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="180920(记事本WriteFileAPI钩取+调试器)">
+<meta property="og:url" content="https://XySherlock.github.io/2018/09/20/180920/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
+<meta property="og:description" content="记事本WriteFileAPI钩取调试器（Debugger）进行调试的程序被调试者（Debuggee）：被调试的程序调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对寄存器与内存的所有访问权限。调试器无法处理或者不关心的调试事件最终由OS处理。EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-11T11:39:58.219Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XySherlock&#39;s Secret Base">
+<meta name="twitter:title" content="180920(记事本WriteFileAPI钩取+调试器)">
+<meta name="twitter:description" content="记事本WriteFileAPI钩取调试器（Debugger）进行调试的程序被调试者（Debuggee）：被调试的程序调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对寄存器与内存的所有访问权限。调试器无法处理或者不关心的调试事件最终由OS处理。EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -64,245 +69,80 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/11/11/hello-world/" class="archive-article-date">
-  <time class="post-time" datetime="2018-11-11T11:57:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br>
-    <span class="post-day">11</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/11/hello-world/">Welcome</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/10/04/181004/" class="archive-article-date">
-  <time class="post-time" datetime="2018-10-04T11:50:33.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br>
-    <span class="post-day">04</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/181004/">181004(隐藏进程)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/21/180921-1/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-21T11:47:01.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">21</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/180921-1/">180921（计算器中显示字）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/20/180920/" class="archive-article-date">
+        <section id="main"><article id="post-180920" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/20/180920/" class="article-date">
   <time class="post-time" datetime="2018-09-20T11:36:22.000Z" itemprop="datePublished">
     <span class="post-month">9月</span><br>
     <span class="post-day">20</span>
   </time>
 </a>
-      
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/20/180920/">180920(记事本WriteFileAPI钩取+调试器)</a>
+    <h1 class="article-title" itemprop="name">
+      180920(记事本WriteFileAPI钩取+调试器)
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/19/180919/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-19T11:31:56.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">19</span>
-  </time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/19/180919/">180919(API钩取)</a>
-    </h1>
-  
+        <h1 id="记事本WriteFileAPI钩取"><a href="#记事本WriteFileAPI钩取" class="headerlink" title="记事本WriteFileAPI钩取"></a>记事本WriteFileAPI钩取</h1><p>调试器（Debugger）进行调试的程序<br>被调试者（Debuggee）：被调试的程序<br>调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对<font color="#ff0000" size="3">寄存器与内存</font>的<font color="#ff0000" size="3">所有</font>访问权限。<br>调试器无法处理或者不关心的调试事件最终由OS处理。<br>EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。代码调试遇到INT3指令即中断运行，异常事件被传送到调试器。</p>
+<p>实验中首先将notepad用od打开，然后进行一次操作，在od中使用api设置断点手法，通过对进程栈的查看找到数据缓冲区的地址，可以进而通过对目标地址内容的操作达到对程序运行的字符串的修改.我们通过这种方法得知了我们应该修改被调试进程内存的哪一部分。</p>
+<p>注意我们在设置断点后，起始地址遇到INT3（0xCC）指令就，EIP的值会增加1个字节.（被调试者的地址因此改变了），但OD等调试器不会显示INT3指令，会自动把字节恢复。</p>
+<p>为了防止程序执行流陷入死循环，应该脱钩，即修改起始地址处的0xCC为0x6A，取消对API的钩取。<br>通过DebugActiveProcess()API将调试器附加到该运行的进程上.<br>WaitForDebugEvent（）发生调试事件，就会将相关事件信息设置到其第一个参数的变量，然后立刻返回。<br>ReadProcessMemory()来获取第一个字节并暂时存储，WriteProcessMemory()来把第一个字节下断点。</p>
+<p>脱钩过程不是必须的，可以取消对相关API的调用，也可以调用用户自定义的函数.<br>Windows OS是一个多线程（multi-thread）操作系统，同一进程 可以同时运行多个线程。<br>必须在调试器终止前“脱钩”</p>
+<h1 id="调试器"><a href="#调试器" class="headerlink" title="调试器"></a>调试器</h1><h3 id="WinDbg"><a href="#WinDbg" class="headerlink" title="WinDbg"></a>WinDbg</h3><p>OD和IDA pro都是用户态调试器，WinDbg不仅是用户态调试器，还是内核态调试器，主要用于内核模式调试。可以用来直接下载系统文件符号（Symbol），获取系统内部结构体及API的相关信息。还能用来读取、分析windows OS的转储文件。<br>    图形用户界面比较差。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/180918/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-18T11:21:52.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/180918/">180918(使用汇编编写注入代码)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/postTest/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T17:46:40.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cjocu3crc00060ow89vvso4u0" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/postTest/">180918(代码注入)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/17/180917/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T10:53:07.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">17</span>
-  </time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/17/180917/">180917（PE Tools）</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/21/180921-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          180921（计算器中显示字）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/19/180919/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">180919(API钩取)</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/11/180911/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-11T10:38:46.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">11</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/180911/">180911（DLL注入）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/07/180907/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-07T10:35:15.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">07</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/180907/">180907（windows消息钩取）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">next &raquo;</a>
-  </nav>
 
 </section>
         

@@ -3,15 +3,25 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>归档: 2018 | XySherlock&#39;s Secret Base</title>
+  <title>180911（DLL注入） | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XySherlock&#39;s Secret Base">
-<meta property="og:url" content="https://XySherlock.github.io/archives/2018/index.html">
+  <meta name="description" content="一、DLL注入从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的D">
+<meta name="keywords" content="reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="180911（DLL注入）">
+<meta property="og:url" content="https://XySherlock.github.io/2018/09/11/180911/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
+<meta property="og:description" content="一、DLL注入从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的D">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091101.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091102.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091103.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091104.png">
+<meta property="og:updated_time" content="2018-11-11T11:40:50.223Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XySherlock&#39;s Secret Base">
+<meta name="twitter:title" content="180911（DLL注入）">
+<meta name="twitter:description" content="一、DLL注入从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的D">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091101.png">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -64,245 +74,78 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/11/11/hello-world/" class="archive-article-date">
-  <time class="post-time" datetime="2018-11-11T11:57:00.000Z" itemprop="datePublished">
-    <span class="post-month">11月</span><br>
-    <span class="post-day">11</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/11/hello-world/">Welcome</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/10/04/181004/" class="archive-article-date">
-  <time class="post-time" datetime="2018-10-04T11:50:33.000Z" itemprop="datePublished">
-    <span class="post-month">10月</span><br>
-    <span class="post-day">04</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/04/181004/">181004(隐藏进程)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/21/180921-1/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-21T11:47:01.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">21</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/180921-1/">180921（计算器中显示字）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/20/180920/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-20T11:36:22.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">20</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/20/180920/">180920(记事本WriteFileAPI钩取+调试器)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/19/180919/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-19T11:31:56.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">19</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/19/180919/">180919(API钩取)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/180918/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-18T11:21:52.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/180918/">180918(使用汇编编写注入代码)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/postTest/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T17:46:40.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/postTest/">180918(代码注入)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/17/180917/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T10:53:07.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">17</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/17/180917/">180917（PE Tools）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/11/180911/" class="archive-article-date">
+        <section id="main"><article id="post-180911" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/11/180911/" class="article-date">
   <time class="post-time" datetime="2018-09-11T10:38:46.000Z" itemprop="datePublished">
     <span class="post-month">9月</span><br>
     <span class="post-day">11</span>
   </time>
 </a>
-      
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/180911/">180911（DLL注入）</a>
+    <h1 class="article-title" itemprop="name">
+      180911（DLL注入）
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/07/180907/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-07T10:35:15.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">07</span>
-  </time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/180907/">180907（windows消息钩取）</a>
-    </h1>
-  
+        <h1 id="一、DLL注入"><a href="#一、DLL注入" class="headerlink" title="一、DLL注入"></a>一、DLL注入</h1><p>从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。<br>DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。<br>DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的DllMain（）函数。</p>
+<h1 id="二、练习myhack-dll"><a href="#二、练习myhack-dll" class="headerlink" title="二、练习myhack.dll"></a>二、练习myhack.dll</h1><p>1、打开虚拟机用记事本打开一个新建txt，用Process Explorer发现pid是960<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091101.png" alt="Image"><br>2、    按照书上所说<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091102.png" alt="Image"><br>     好的吧…也没下载到index.html 看来注入失败了 用本地试一下<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091103.png" alt="Image"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091104.png" alt="Image"><br>      行的吧，看来被拦截下来了==</p>
+<p>但是根据对书上内容的学习，我们知道了借助创建远程线程的方法可以成功“渗透”指定进程，进而可以随意操作</p>
+<p>源代码实例<br>Tchar.h中的tchar在unicode下是wchar（双字符），而普通是char。</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cjocu3cr500040ow8nx7f2754" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/17/180917/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          180917（PE Tools）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/07/180907/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">180907（windows消息钩取）</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/page/2/">next &raquo;</a>
-  </nav>
 
 </section>
         

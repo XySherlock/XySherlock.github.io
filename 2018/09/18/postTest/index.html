@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>180918(代码注入) | XySherlock&#39;s Secret Base</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="代码注入(Code Injection)一、代码注入代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下    HANDLE WINAPI CreateRemoteThread(    in HANDLE hProc">
+<meta name="keywords" content="reverse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="180918(代码注入)">
+<meta property="og:url" content="https://XySherlock.github.io/2018/09/18/postTest/index.html">
+<meta property="og:site_name" content="XySherlock&#39;s Secret Base">
+<meta property="og:description" content="代码注入(Code Injection)一、代码注入代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下    HANDLE WINAPI CreateRemoteThread(    in HANDLE hProc">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091801.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091802.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091803.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091804.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091805.png">
+<meta property="og:updated_time" content="2018-11-11T11:30:46.036Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="180918(代码注入)">
+<meta name="twitter:description" content="代码注入(Code Injection)一、代码注入代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下    HANDLE WINAPI CreateRemoteThread(    in HANDLE hProc">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091801.png">
+  
+    <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/XySher.png">
+    <h2 class="author">XySherlock</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>11</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-postTest" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/postTest/" class="article-date">
+  <time class="post-time" datetime="2018-09-17T17:46:40.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      180918(代码注入)
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="代码注入-Code-Injection"><a href="#代码注入-Code-Injection" class="headerlink" title="代码注入(Code Injection)"></a>代码注入(Code Injection)</h1><h3 id="一、代码注入"><a href="#一、代码注入" class="headerlink" title="一、代码注入"></a>一、代码注入</h3><p>代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。<br>这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下<br>    HANDLE WINAPI CreateRemoteThread(<br>    <strong>in HANDLE hProcess,
+    </strong>in LPSECURITY_ATTRIBUTES lpThreadAttributes,<br>    <strong>in SIZE_T dwStackSize,
+    </strong>in LPTHREAD_START_ROUTINE lpStartAddress,<br>    <strong>in LPVOID lpParameter,
+    </strong>in DWORD dwCreationFlags,<br>    __out LPDWORD lpThreadId<br>    );<br>Dll注入处就曾说ThreadProc（）和LoadLibrary（）都有一个4字节的参数，并返回一个4字节的值。通过CreateRemoteThread（）驱使目标进程调用LoadLibrary（）函数可以加载指定的DLL文件<br>代码注入相比DLL注入要更方便，考虑的事情更少，而且几乎不会留下任何痕迹。</p>
+<h3 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091801.png" alt="XySher"><br>跟着书上做的实验notepad的pid是C4<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091802.png" alt="XySher"><br>又一个没跑成的实验==行吧 跟着源码走一遍<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091803.png" alt="XySher"><br>    main()函数调用了传入dwPID的InjectCode函数。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091804.png" alt="XySher"><br>直接注入ThreadProc（）进程会导致代码引用地址的内容并不存在于目标进程而出现错误。所以必须同时注入相关字符串以及API地址。（所以本程序中用了THREAD_PARAM结构体接收数据）<br>在InjectCode（）函数中，设置好THREAD_PARAM结构体，然后调用api为data与code分配内存，并将它们注入目标进程，最后调用CreateRemoteThread（）API，执行远程线程。</p>
+<h3 id="三、代码注入调试练习"><a href="#三、代码注入调试练习" class="headerlink" title="三、代码注入调试练习"></a>三、代码注入调试练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091805.png" alt="XySher"><br>Debugging option是这里的<br>勾选过后打开<br>代码注入还是失败，跟着书上找。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cjocu3crv000g0ow8hp9xdt2b" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/18/180918/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          180918(使用汇编编写注入代码)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/17/180917/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">180917（PE Tools）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">XySherlock&#39;s Secret Base</h1>
+    <h2 class="blog-subtitle"></h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/XySher.png">
+    <h2 class="author">XySherlock</h2>
+    <h3 class="description"></h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>11</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>0</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://github.com/XySherlock/" target="_blank" title="Github">
+          Github
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://hpasserby.me/" target="_blank" title="Hpasserby">
+          Hpasserby
+        </a>
+      
+        <a class="hvr-bounce-in" href="http://www.sunyq.xin/" target="_blank" title="Silence">
+          Silence
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://www.daiwei.store/" target="_blank" title="代婉小姐姐">
+          代婉小姐姐
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2017 - 2018 XySherlock<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title="" class="menuItem">首页</a>
+          
+            <a href="/tags" title="" class="menuItem">标签</a>
+          
+            <a href="/categories" title="" class="menuItem">分类</a>
+          
+            <a href="/archives" title="" class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title="" class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title="" class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
