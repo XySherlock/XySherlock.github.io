@@ -3,15 +3,16 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>XySherlock&#39;s Secret Base</title>
+  <title>181129 | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XySherlock&#39;s Secret Base">
-<meta property="og:url" content="https://XySherlock.github.io/page/2/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="181129">
+<meta property="og:url" content="https://XySherlock.github.io/2018/11/29/181129/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-29T14:25:58.353Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XySherlock&#39;s Secret Base">
+<meta name="twitter:title" content="181129">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -64,14 +65,12 @@
   </div>
 </div>
 
-        <section id="main">
-  
-    <article id="post-180907" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-181129" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/07/180907/" class="article-date">
-  <time class="post-time" datetime="2018-09-07T10:35:15.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">07</span>
+    <a href="/2018/11/29/181129/" class="article-date">
+  <time class="post-time" datetime="2018-11-29T14:25:58.000Z" itemprop="datePublished">
+    <span class="post-month">11月</span><br>
+    <span class="post-day">29</span>
   </time>
 </a>
    
@@ -82,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/07/180907/">180907（windows消息钩取）</a>
+    <h1 class="article-title" itemprop="name">
+      181129
     </h1>
   
 
@@ -98,86 +97,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#一、钩子<br>Hook，即钩子。<br>偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）<br>GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。</p>
-<p>键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相应的[application message queue]中，应用程序发现新消息，调用相应事件处理程序处理。</p>
-<p>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。<br>DLL是Dynamic Link Library的缩写，意为动态链接库。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可有多个DLL文件，一个DLL文件也可能被几个应用程序所共用，这样的DLL文件被称为共享DLL文件。<br>在windows内存中，每个文件在内存中被os使用句柄来标识。应用程序被运行时，就会使得每一个可执行文件或者dll文件拥有一个独一无二的实例句柄</p>
-<p>Hook procedure（钩子过程）是由操作系统调用的回调函数。安装消息钩子时，“钩子”需要存在某个dll内部，且dll的实例句柄（instance handle）即是hMod。<br>若挂钩线程ID（dwThreadID）是0那么是全局钩子（Global Hook）。影响全部进程<br>当使用SetWindowsHookEx()设置好钩子之后，生成指定消息系统会将相关的dll文件强制注入（injection）相应进程，然后调用“钩子”过程。</p>
-<p>#二、键盘消息钩取练习<br>(跟书上相同)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cjp2ozdv600009gvpn8gglbzj" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-180626" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/26/180626/" class="article-date">
-  <time class="post-time" datetime="2018-06-26T10:30:33.000Z" itemprop="datePublished">
-    <span class="post-month">6月</span><br>
-    <span class="post-day">26</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/26/180626/">180626（内嵌补丁）</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、内嵌补丁（Inline-Patch）"><a href="#一、内嵌补丁（Inline-Patch）" class="headerlink" title="一、内嵌补丁（Inline Patch）"></a>一、内嵌补丁（Inline Patch）</h1><p>它是“内嵌代码补丁“（Inline Code Patch）的简称。常用于对象程序经过运行时压缩（加密处理）而难以修改的情况。<br>运行时压缩代码的Ep代码先将加密的OEP代码解密，然后再跳转到OEP代码处。<br>内嵌补丁在文件设置被称为“洞穴代码”的“补丁代码”，在EP代码解密后修改JMP指令跳转到洞穴代码的运行。<br>把特定地址区域的值加和后存储到寄存器中，将寄存器中的值与既定的值进行比较，这个值叫校验和（计算所得），若相同则跳转到OEP处，不同则输出错误信息。</p>
-<h1 id="二、Patchme练习"><a href="#二、Patchme练习" class="headerlink" title="二、Patchme练习"></a>二、Patchme练习</h1><p>在书上的操作基础上额外几个基本的小操作。<br>1、    在循环的地方看od循环结束的第一条指令下断点（F2）然后F4运行到目标指令（当红色的地址变成了白底红字则为跑到了该断点。<br>2、    在运行过加密的指令后od不会进行重新分析，所以当我们抵达了一个看起来就像data段的地方时要右键点击点击分析。这样od将会重新分析，显示出已经解密过的代码段。<br>注意：函数传参的参数遵循小端序，传参顺序和我们看见的参数push进入的顺序是相反的。<br>3、    内嵌补丁代码设置位置<br>（1）    （补丁代码较少）设置到文件的空白区域<br>（2）    拓展最后节区后设置<br>（3）    添加新节区后设置<br>注意：为了在程序中进行解密处理，一定要在节区头添加可写属性，获得相应内存的可写权限（当对无写权限的内存进行“写”操作时，会引发非法访问异常）<br>    方法使用的空白区域可能被程序加密了，需要根据程序加密方式对我们的cave code也加密过后写入，否则经过解密的代码就不是我们想要写入的代码了。</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cjp2ozdwa00059gvpfxi1t8sc" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/11/29/181129/" data-id="cjp2ozdwj000c9gvps9e7uk6n" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
-
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Welcome</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
 
-
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; pre</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 </section>
         
           <aside id="sidebar">
