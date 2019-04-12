@@ -3,13 +3,53 @@
   
     
     <entry>
-      <title>181129</title>
-      <link href="/2018/11/29/181129/"/>
-      <url>/2018/11/29/181129/</url>
+      <title>Pwn01</title>
+      <link href="/2019/04/13/Pwn01/"/>
+      <url>/2019/04/13/Pwn01/</url>
+      
+        <content type="html"><![CDATA[<h3 id="SCUctf2018-Pwn00"><a href="#SCUctf2018-Pwn00" class="headerlink" title="SCUctf2018 Pwn00"></a>SCUctf2018 Pwn00</h3><p>师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。<br>先是查一下文件<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png" alt="image1"></p><p>首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）<br>然后就是调调调<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041301.png" alt="image1"></p><p>从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返回地址，进而调用程序预留的后门(magic)</p><p>之后就快乐写jo本</p><p><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041303.png" alt="image1"></p><p>写完能跑 </p><p>成了。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Pwn 100%greenie </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Pwn00(菜鸡的Pwn入门)</title>
+      <link href="/2019/01/01/Pwn00/"/>
+      <url>/2019/01/01/Pwn00/</url>
+      
+        <content type="html"><![CDATA[<h5 id="一、写在最开始"><a href="#一、写在最开始" class="headerlink" title="一、写在最开始"></a>一、写在最开始</h5><p>这是一个菜鸡学习pwn的记录。主要作用是帮助自己进行记忆<del>因为我是金鱼精</del>，防止自己忘记必要知识，方便复习。<br>当然如果这个系列的文章帮到你了，我会很荣幸。</p><h2 id="二、入门基础知识"><a href="#二、入门基础知识" class="headerlink" title="二、入门基础知识"></a>二、入门基础知识</h2><p>首先，我们需要知道函数调用的相关信息，以及栈溢出的基本知识，（在我入门的这最初一段时间里我几乎可以遇见地会一直和栈溢出死磕到底。）栈溢出的知识又有很多相关的东西。我把这篇文章命名为00是因为我将会随时修改这篇文章里面存在的基础知识。大部分会是增添。</p><p>①栈帧</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Pwn 100%greenie </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>181130()</title>
+      <link href="/2018/11/29/181130/"/>
+      <url>/2018/11/29/181130/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      
+        <tags>
+            
+            <tag> reverse </tag>
+            
+        </tags>
       
     </entry>
     
@@ -29,7 +69,7 @@
       <link href="/2018/10/04/181004/"/>
       <url>/2018/10/04/181004/</url>
       
-        <content type="html"><![CDATA[<h3 id="一、隐藏进程："><a href="#一、隐藏进程：" class="headerlink" title="一、隐藏进程："></a>一、隐藏进程：</h3><p>隐藏进程：隐藏特定进程的技术（stealth process），专业术语叫Rootkit，指通过修改（Hooking）系统内核来隐藏进程、文件、注册表的一种技术。<br>IAT钩取通过操作进程的特定IAT值来实现API钩取，而API代码修改技术则将API代码的前五个字节修改为JMP XXXXXXXX来钩取API。<br>（1）正常调用API时<br>调用API时，首先使用CALL 指令调用API，在相应API执行完毕后，返回到调用代码的下一条指令的地址处。<br>（2）钩取之后：</p><p>首先把dll注入目标进程，API起始地址5个字节代码被修改为JMP XXXXXXXX（仅修改五个字节），在我们的XXXXXXXX的位置,首先把APi修改回原样然后调用一次，之后钩取。<br>注：当API的前五个字节是我们修改过后的时，也即API被钩取。<br>    使用API代码修改技术可以钩取进程中使用的任意API。要钩取的API代码长度要大于五个字节但是所有API代码长度都大于5个字节。</p><p>进程隐藏，用户模式下最常用的是ntdll.ZwQuery-SystemInformation()API钩取技术。</p><p>为了隐藏某个特定进程，要潜入其他所有进程内存，钩取相关API。</p><p>用户模式下检测进程的API分为2类<br>1、    CreateToolhelp32Snapshot()&amp;EnumProcess()<br>2、    ZwQuerySystemInformation()</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="一、隐藏进程："><a href="#一、隐藏进程：" class="headerlink" title="一、隐藏进程："></a>一、隐藏进程：</h3><p>隐藏进程：隐藏特定进程的技术（stealth process），专业术语叫Rootkit，指通过修改（Hooking）系统内核来隐藏进程、文件、注册表的一种技术。<br>IAT钩取通过操作进程的特定IAT值来实现API钩取，而API代码修改技术则将API代码的前五个字节修改为JMP XXXXXXXX来钩取API。<br>（1）正常调用API时<br>调用API时，首先使用CALL 指令调用API，在相应API执行完毕后，返回到调用代码的下一条指令的地址处。<br>（2）钩取之后：</p><p>首先把dll注入目标进程，API起始地址5个字节代码被修改为JMP XXXXXXXX（仅修改五个字节），在我们的XXXXXXXX的位置,首先把APi修改回原样然后调用一次，之后钩取。<br>注：当API的前五个字节是我们修改过后的时，也即API被钩取。<br>    使用API代码修改技术可以钩取进程中使用的任意API。要钩取的API代码长度要大于五个字节但是所有API代码长度都大于5个字节。</p><p>进程隐藏，用户模式下最常用的是ntdll.ZwQuery-SystemInformation()API钩取技术。</p><p>为了隐藏某个特定进程，要潜入其他所有进程内存，钩取相关API。</p><p>用户模式下检测进程的API分为2类<br>1、    CreateToolhelp32Snapshot()&amp;EnumProcess()</p><p>2、    ZwQuerySystemInformation()<br>  该API可以获取运行中的所有进程信息（结构体）,形成一个链表。操作该链表即可隐藏相关进程。<br>  因此我们需要“全局”(global)钩取来实现钩取系统中运行的所有进程的ZwQuerySystemInformation（）API。</p><h4 id="练习实例"><a href="#练习实例" class="headerlink" title="练习实例"></a>练习实例</h4><p>1、练习#1<br>在虚拟机中按照书上的格式使用书中提供的程序。但是注入失败。经检测发现dll注入正常，经过分析可能是虚拟机自带的procexp是魔改版本，可以保护自身不被dll注入。所以“notepad.exe”并未消失.</p><p>使用CreateToolhelp32Snapshot（）获取系统中运行的所有进程的列表，然后使用Process32First（）与Process32Next（）将获取的进程信息存放到PROCESSENTRY32结构体变量pe中进而获取进程的PID.</p><p>在代码的注入中，分析源代码发现进程PID小于100的程序我们就没有操作。（系统进程）</p><p>这段代码中，我们先创建名为”.SHARE”的共享内存节区，然后创建g_szProcName缓冲区，最后再由导出函数SetProcName()将要隐藏的进程名称保存到g_szProcName中。</p><p>JMP加地址  E9 XXXXXXXX 其中XXXXXXXX=要跳转的地址-当前指令地址-当前指令长度</p><p>###二、全局API钩取<br>全局API钩取针对的进程为：（1）当前运行的所有进程（2）将来要运行的所有进程<br>Kernel32.CreateProcess()被用来创建新进程。因此如果钩取了Kernel32.CreateProcess()那么之后父进程使用它创建的所有子进程都会被注入。<br>但是要注意（1）还要钩取CreateProcessA()、CreateProcessW()2个API（ASCII和Unicode版本） (2)微软部分软件会调用CreateProcessInternalA/W这两个上述API内部的函数。（若可能，尽量钩取低级API） 。<br>ntdll.ZwResumeThread（）API ，比CreateProcess（）更低级，钩取效果更好。<br>ZwResumeThread()函数在进程创建后，主线程运行前被调用执行（在CreateProcess（）API内部调用执行）。但该API尚未被公开，可能会被更改，因此可能在未来的时间钩取操作无法运行。</p><h4 id="练习实例-1"><a href="#练习实例-1" class="headerlink" title="练习实例"></a>练习实例</h4><p> 按照书中所说我们把”stealth2.dll”导入系统目录的system32文件夹，并运行了程序</p><p>这次和书中的预期结果相同，procExp进程和任务管理器中的“notepad.exe”进程隐藏了。<br>与实验1的不同是在本次的stealth2.dll中，添加了钩取CreateProcessA()和CreateProcessW（）API的代码.<br>值得注意的是钩取尚未公开的API时，一定要检查它在当前的OS版本中能否正常运行。</p><p>###三、 利用“热补丁”技术钩取API<br>API代码修改技术修改过后的API每次被在程序内部调用时，我们的钩取函数就会被调用执行，不断的“脱钩”/挂钩。造成整体性能地下，更严重的是在多线程环境下还会产生运行时错误。当一个线程尝试运行某段代码时，若另一线程正在对该段代码进行“写”操作，这时就会出现冲突，最后引发运行时错误。<br>因此，我们需要“热补丁”（Hot Patch/Hot Fix）技术比修改5个字节代码的方法更稳定。热补丁将会修改7个字节代码。<br>常用API的起始代码部分会以”MOV EDI,EDI”开始（IA-32：0x8BFF）,API代码上方有5个NOP指令（IA-32:0x90）。<br> MOV EDI，EDI 2个字节，NOP 1个字节。 这七个字节的指令没有任何意义。<br>我们将API起始代码之前的5个字节修改为FAR JMP指令，跳转到用户钩取函数处，然后将API其实代码的2个字节修改为SHORT JMP指令。通过这种我们称为“二次跳转”的技术就完成了对指定API的钩取操作。通过热补丁技术钩取的API并未对原API进行修改，可以用”原API地址+2”开始执行原API。</p><h4 id="练习实例-2"><a href="#练习实例-2" class="headerlink" title="练习实例"></a>练习实例</h4><p>按照书中的实验原理很容易理解，我们来看源码。</p><p>在这里的pBuf【5】申明为{0xE9,0}，之后使用两次memcpy函数先把 “JMP XXXXXXXX”的XXXXXXX写进去，然后把整个“JMP XXXXXXXX”写到API前的那五个字节。然后用memcpy把MOV EDI,EDI替换为JMP YY指令。<br>值得注意的是热补丁API钩取技术使用时必须满足它的使用条件。如果不满足使用条件那么就只能使用五字节代码修改技术。<br>Ntdll.dll中提供的API代码都较短，钩取这些API的时候有一种非常好的方法，将原API备份到用户内存区域，然后使用5字节代码修改技术修改原API的起始部分。 由于API代码较短且代码内部地址无依赖性，因此非常适合使用这一技术钩取。但这一技术需要处理重定位的问题。</p>]]></content>
       
       
       

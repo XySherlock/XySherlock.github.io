@@ -38,9 +38,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>12</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,113 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-180917" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/17/180917/" class="article-date">
+  <time class="post-time" datetime="2018-09-17T10:53:07.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">17</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/17/180917/">180917（PE Tools）</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上那个网站发现好像挂了然后就google了一下，好像改成在github的开源项目了<br>看了一下吾爱破解的xp虚拟机还真有 诶毛熊nb<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091701.png" alt="XySher"><br>PE Tools获取<font color="#ff0000" size="3">运行中进程</font>列表，并将之显示在主窗口中。（也显示pid）petools拥有进程内存转储功能。</p>
+<h3 id="一、进程内存转储"><a href="#一、进程内存转储" class="headerlink" title="一、进程内存转储"></a>一、进程内存转储</h3><p>转储（dump）就，将内存中的内容转存到文件。<br>可以通过使用反转储技术来给转储带来困难。<br>通过转储可以比调试器更快速简单的查看字符串。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091702.png" alt="XySher"><br>我转储我自己==<br>完整转储(DumpFull)从ImageBase转储SizeOfImage大小的区域<br>部分转储（DumpPartial）从指定地址开始转储指定大小部分 （可以自行设置起点和长度）<br>区域转储(DumpRegion)转储状态标识为COMMIT的内存区域。</p>
+<h3 id="二、PE编辑器"><a href="#二、PE编辑器" class="headerlink" title="二、PE编辑器"></a>二、PE编辑器</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091703.png" alt="XySher"><br>点击了转存之后，（吾爱破解是真狠啊汉化的到位）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cjuedlggp0005h8vpdsu4f53f" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-180911" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/11/180911/" class="article-date">
+  <time class="post-time" datetime="2018-09-11T10:38:46.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">11</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/11/180911/">180911（DLL注入）</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、DLL注入"><a href="#一、DLL注入" class="headerlink" title="一、DLL注入"></a>一、DLL注入</h1><p>从技术细节来说，DLL注入命令其他进城自行调用LoadLibrary()API,加载用户指定的DLL文件。DLL注入与一般DLL加载的区别在于，加载的目标进程是其自身或其他进程。<br>DLL被加载到进程后会自动运行DllMain（）函数，用户可以把想执行的代码放到DllMain（）函数。<br>DLL注入工作原理就是从外部促进目标进程调用LoadLibrary（）API，所以强制调用执行DLL的DllMain（）函数。</p>
+<h1 id="二、练习myhack-dll"><a href="#二、练习myhack-dll" class="headerlink" title="二、练习myhack.dll"></a>二、练习myhack.dll</h1><p>1、打开虚拟机用记事本打开一个新建txt，用Process Explorer发现pid是960<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091101.png" alt="Image"><br>2、    按照书上所说<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091102.png" alt="Image"><br>     好的吧…也没下载到index.html 看来注入失败了 用本地试一下<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091103.png" alt="Image"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091104.png" alt="Image"><br>      行的吧，看来被拦截下来了==</p>
+<p>但是根据对书上内容的学习，我们知道了借助创建远程线程的方法可以成功“渗透”指定进程，进而可以随意操作</p>
+<p>源代码实例<br>Tchar.h中的tchar在unicode下是wchar（双字符），而普通是char。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cjuedlggo0004h8vpufl8mg1z" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-180907" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -107,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cjp2ozdv600009gvpn8gglbzj" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cjuedlggc0000h8vpoomljkpm" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -159,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cjp2ozdwa00059gvpfxi1t8sc" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cjuedlggn0003h8vp804txtip" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -217,9 +324,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>12</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>1</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
     </div>
 
 
@@ -267,7 +374,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2017 - 2018 XySherlock<br>
+      &copy;2018 - 2019 XySherlock<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       

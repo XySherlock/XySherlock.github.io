@@ -3,15 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>归档: 2018/9 | XySherlock&#39;s Secret Base</title>
+  <title>Pwn01 | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XySherlock&#39;s Secret Base">
-<meta property="og:url" content="https://XySherlock.github.io/archives/2018/09/index.html">
+  <meta name="description" content="SCUctf2018 Pwn00师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。先是查一下文件 首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）然后就是调调调 从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返">
+<meta name="keywords" content="Pwn 100%greenie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pwn01">
+<meta property="og:url" content="https://XySherlock.github.io/2019/04/13/Pwn01/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
+<meta property="og:description" content="SCUctf2018 Pwn00师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。先是查一下文件 首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）然后就是调调调 从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png">
+<meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041301.png">
+<meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041303.png">
+<meta property="og:updated_time" content="2019-04-12T17:55:42.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XySherlock&#39;s Secret Base">
+<meta name="twitter:title" content="Pwn01">
+<meta name="twitter:description" content="SCUctf2018 Pwn00师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。先是查一下文件 首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）然后就是调调调 从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返">
+<meta name="twitter:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -64,196 +73,71 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
+        <section id="main"><article id="post-Pwn01" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/13/Pwn01/" class="article-date">
+  <time class="post-time" datetime="2019-04-12T17:43:52.000Z" itemprop="datePublished">
+    <span class="post-month">4月</span><br>
+    <span class="post-day">13</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
     
     
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Pwn01
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
         </div>
-        <div class="archives">
+      </header>
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/21/180921-1/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-21T11:47:01.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">21</span>
-  </time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/21/180921-1/">180921（计算器中显示字）</a>
-    </h1>
-  
+        <h3 id="SCUctf2018-Pwn00"><a href="#SCUctf2018-Pwn00" class="headerlink" title="SCUctf2018 Pwn00"></a>SCUctf2018 Pwn00</h3><p>师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。<br>先是查一下文件<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png" alt="image1"></p>
+<p>首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）<br>然后就是调调调<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041301.png" alt="image1"></p>
+<p>从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返回地址，进而调用程序预留的后门(magic)</p>
+<p>之后就快乐写jo本</p>
+<p><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041303.png" alt="image1"></p>
+<p>写完能跑 </p>
+<p>成了。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/20/180920/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-20T11:36:22.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">20</span>
-  </time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/20/180920/">180920(记事本WriteFileAPI钩取+调试器)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/19/180919/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-19T11:31:56.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">19</span>
-  </time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2019/04/13/Pwn01/" data-id="cjuedlggy000fh8vpo65b31wn" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/19/180919/">180919(API钩取)</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/180918/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-18T11:21:52.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/180918/">180918(使用汇编编写注入代码)</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn-100-greenie/">Pwn 100%greenie</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/18/postTest/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T17:46:40.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/18/postTest/">180918(代码注入)</a>
-    </h1>
   
+    <a href="/2019/01/01/Pwn00/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Pwn00(菜鸡的Pwn入门)</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/17/180917/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-17T10:53:07.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">17</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/17/180917/">180917（PE Tools）</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/11/180911/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-11T10:38:46.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">11</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/11/180911/">180911（DLL注入）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/09/07/180907/" class="archive-article-date">
-  <time class="post-time" datetime="2018-09-07T10:35:15.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">07</span>
-  </time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/07/180907/">180907（windows消息钩取）</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 
 </section>
