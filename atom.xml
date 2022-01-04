@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://XySherlock.github.io/"/>
-  <updated>2019-04-12T17:55:42.376Z</updated>
+  <updated>2022-01-04T10:55:24.937Z</updated>
   <id>https://XySherlock.github.io/</id>
   
   <author>
@@ -17,11 +17,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>2022-01-04test1</title>
+    <link href="https://XySherlock.github.io/2022/01/04/2022-01-04test1/"/>
+    <id>https://XySherlock.github.io/2022/01/04/2022-01-04test1/</id>
+    <published>2022-01-04T10:54:18.000Z</published>
+    <updated>2022-01-04T10:55:24.937Z</updated>
+    
+    <content type="html"><![CDATA[<p>#test<br>test<br>test<br>test</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;#test&lt;br&gt;test&lt;br&gt;test&lt;br&gt;test&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="IoT" scheme="https://XySherlock.github.io/tags/IoT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>testtest</title>
+    <link href="https://XySherlock.github.io/2022/01/04/test1/"/>
+    <id>https://XySherlock.github.io/2022/01/04/test1/</id>
+    <published>2022-01-04T10:03:00.000Z</published>
+    <updated>2022-01-04T10:03:47.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>test<br>test<br>test</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;test&lt;br&gt;test&lt;br&gt;test&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="Pwn 100%greenie" scheme="https://XySherlock.github.io/tags/Pwn-100-greenie/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Pwn01</title>
     <link href="https://XySherlock.github.io/2019/04/13/Pwn01/"/>
     <id>https://XySherlock.github.io/2019/04/13/Pwn01/</id>
     <published>2019-04-12T17:43:52.000Z</published>
-    <updated>2019-04-12T17:55:42.376Z</updated>
+    <updated>2019-04-21T07:07:39.019Z</updated>
     
     <content type="html"><![CDATA[<h3 id="SCUctf2018-Pwn00"><a href="#SCUctf2018-Pwn00" class="headerlink" title="SCUctf2018 Pwn00"></a>SCUctf2018 Pwn00</h3><p>师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。<br>先是查一下文件<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png" alt="image1"></p><p>首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）<br>然后就是调调调<br><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041301.png" alt="image1"></p><p>从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返回地址，进而调用程序预留的后门(magic)</p><p>之后就快乐写jo本</p><p><img src="https://github.com/XySherlock/Images/blob/master/screenshots/19041303.png" alt="image1"></p><p>写完能跑 </p><p>成了。</p>]]></content>
     

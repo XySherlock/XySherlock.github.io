@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041302.png">
 <meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041301.png">
 <meta property="og:image" content="https://github.com/XySherlock/Images/blob/master/screenshots/19041303.png">
-<meta property="og:updated_time" content="2019-04-12T17:55:42.376Z">
+<meta property="og:updated_time" content="2019-04-21T07:07:39.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pwn01">
 <meta name="twitter:description" content="SCUctf2018 Pwn00师傅选择了这道入门栈溢出来作为我玩pwn的第一道题。先是查一下文件 首先是题目 丢进IDA看了发现有个magic函数调用了system帮我们解决了问题（爽到）然后就是调调调 从IDA的结果中我们容易看到buf这个局部变量距离ebp的距离是0x20h.我们只需要传一个0x20h的数据把局部变量预留区域塞满，再填掉前一栈帧的ebp，就可以用我们写的返回地址覆盖原函数的返">
@@ -47,9 +47,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>16</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -116,7 +116,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2019/04/13/Pwn01/" data-id="cjuedlggy000fh8vpo65b31wn" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2019/04/13/Pwn01/" data-id="cky06eaxa000ytwu82v8zqmui" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn-100-greenie/">Pwn 100%greenie</a></li></ul>
@@ -126,6 +126,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/01/04/test1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          testtest
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/01/Pwn00/" id="article-nav-older" class="article-nav-link-wrap">
@@ -179,9 +188,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>16</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
     </div>
 
 
@@ -229,7 +238,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy;2018 - 2019 XySherlock<br>
+      &copy;2021 - 2022 XySherlock<br>
       由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
       主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
       
