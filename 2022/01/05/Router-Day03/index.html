@@ -3,20 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>180907（windows消息钩取） | XySherlock&#39;s Secret Base</title>
+  <title>Router Day03：Getting Started | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#一、钩子Hook，即钩子。偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。 键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相">
-<meta name="keywords" content="reverse">
+  <meta name="description" content="Something to sayLots of things just took place in my life,and for me , like graduation,like getting into my Postgraduate Exam for the second time… However, after all this , I just woke up by seeing al">
+<meta name="keywords" content="IoT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="180907（windows消息钩取）">
-<meta property="og:url" content="https://XySherlock.github.io/2018/09/07/180907/index.html">
+<meta property="og:title" content="Router Day03：Getting Started">
+<meta property="og:url" content="https://XySherlock.github.io/2022/01/05/Router-Day03/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
-<meta property="og:description" content="#一、钩子Hook，即钩子。偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。 键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相">
+<meta property="og:description" content="Something to sayLots of things just took place in my life,and for me , like graduation,like getting into my Postgraduate Exam for the second time… However, after all this , I just woke up by seeing al">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-11T10:54:29.230Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220105_01.PNG">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220105_02.PNG">
+<meta property="og:updated_time" content="2022-01-05T11:29:59.565Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="180907（windows消息钩取）">
-<meta name="twitter:description" content="#一、钩子Hook，即钩子。偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。 键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相">
+<meta name="twitter:title" content="Router Day03：Getting Started">
+<meta name="twitter:description" content="Something to sayLots of things just took place in my life,and for me , like graduation,like getting into my Postgraduate Exam for the second time… However, after all this , I just woke up by seeing al">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220105_01.PNG">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -69,12 +72,12 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-180907" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-Router-Day03" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/07/180907/" class="article-date">
-  <time class="post-time" datetime="2018-09-07T10:35:15.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">07</span>
+    <a href="/2022/01/05/Router-Day03/" class="article-date">
+  <time class="post-time" datetime="2022-01-05T09:26:42.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br>
+    <span class="post-day">05</span>
   </time>
 </a>
    
@@ -86,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      180907（windows消息钩取）
+      Router Day03：Getting Started
     </h1>
   
 
@@ -101,19 +104,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#一、钩子<br>Hook，即钩子。<br>偷看或截取信息而在中间设置岗哨的行为叫“挂钩”，偷看或操作信息的行为就是人们常说的钩取（hooking）<br>GUI(图形用户界面)是以事件驱动方式工作的。当发生事件时，OS（操作系统）把事先定义好的消息发送给相应的应用程序，应用程序分析收到的信息后执行相应动作。</p>
-<p>键盘输入事件发生时，WM_KEYDOWN被添加到[OS message queue]。OS从中取出消息，添加到相应的[application message queue]中，应用程序发现新消息，调用相应事件处理程序处理。</p>
-<p>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。<br>DLL是Dynamic Link Library的缩写，意为动态链接库。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可有多个DLL文件，一个DLL文件也可能被几个应用程序所共用，这样的DLL文件被称为共享DLL文件。<br>在windows内存中，每个文件在内存中被os使用句柄来标识。应用程序被运行时，就会使得每一个可执行文件或者dll文件拥有一个独一无二的实例句柄</p>
-<p>Hook procedure（钩子过程）是由操作系统调用的回调函数。安装消息钩子时，“钩子”需要存在某个dll内部，且dll的实例句柄（instance handle）即是hMod。<br>若挂钩线程ID（dwThreadID）是0那么是全局钩子（Global Hook）。影响全部进程<br>当使用SetWindowsHookEx()设置好钩子之后，生成指定消息系统会将相关的dll文件强制注入（injection）相应进程，然后调用“钩子”过程。</p>
-<p>#二、键盘消息钩取练习<br>(跟书上相同)</p>
+        <h3 id="Something-to-say"><a href="#Something-to-say" class="headerlink" title="Something to say"></a>Something to say</h3><p>Lots of things just took place in my life,and for me , like graduation,like getting into my Postgraduate Exam for the second time… However, after all this , I just woke up by seeing all my teammates getting a promising future while I just get my silver LOL account holding a 4000+hours playing score. So I just get myself some simple goals. Within 5 years, I’ll be at that Pwn2Own match . Just see it ,dudes. XySherlock is coming! From nowadays, I’ll write all my tech blogs by English. This aims at practicing my English skills and also decrease the difficulty of reading papers or just getting familiar with English.<br>So much for chatting, Let’s start to work for daydreaming!</p>
+<h1 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h1><p>For my start, I got the book 《揭秘家用路由器0day漏洞技术》 for my router security study , if there were some foreign friends watching my blog, just don’t be envy , I felt the same as you do now when there once goes some English awesome books.XD </p>
+<h1 id="22-01-03-22-01-05"><a href="#22-01-03-22-01-05" class="headerlink" title="22/01/03-22/01/05"></a>22/01/03-22/01/05</h1><p>Learing basic operation about GCC&amp;GDB, and find my ubuntu 16 virtual environment back .<br>These works are simple , while I still got some problems here.</p>
+<h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><ol>
+<li>What’s the relationship between stack and stack frame and frame?<br>Got some related things:<br><a href="https://zhuanlan.zhihu.com/p/77663680" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/77663680</a>;<br><a href="https://blog.csdn.net/ylyuanlu/article/details/18947951;https://blog.csdn.net/yu97271486/article/details/80425089" target="_blank" rel="noopener">https://blog.csdn.net/ylyuanlu/article/details/18947951;https://blog.csdn.net/yu97271486/article/details/80425089</a></li>
+</ol>
+<p>Stack is a data structure.<strong>Every time a function call took place</strong> in this stack, the compiler uses <strong>ebp(extended base pointer)</strong> to maintain an independent <strong>stack frame</strong> on <strong>call stack</strong>.</p>
+<p>And for using ebp there still needs some explanation. Stack is a FILO structure. The address grows from high address to low address. So EBP is sometimes called frame pointer and ESP(extended stack pointer) is called stack pointer. </p>
+<ol start="2">
+<li>How X86 hardware achieves stack and heap? Tech about heap?</li>
+</ol>
+<p>Learn Data structure(0/100)</p>
+<ol start="3">
+<li>Why PC relative addressing moves 2 bit left and do sign extension?</li>
+</ol>
+<p>About MIPS addressing I got:<br><a href="https://www.cs.uregina.ca/Links/class-info/201/SPIM-AddressingMode/lecture.html" target="_blank" rel="noopener">https://www.cs.uregina.ca/Links/class-info/201/SPIM-AddressingMode/lecture.html</a><br><a href="https://www.youtube.com/watch?v=Nkia4IWTEA4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Nkia4IWTEA4</a></p>
+<p>For bytes coming into words, there goes the “shifting two to left” like 3(011)coming into 12(01100).</p>
+<p>And I think there goes two images might be used often:<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220105_01.PNG" alt="Image"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220105_02.PNG" alt="Image"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky1glyfy0001oou8jurw9rux" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2022/01/05/Router-Day03/" data-id="cky1glyhe000noou8lzqi94vq" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/">IoT</a></li></ul>
 
     </footer>
   </div>
@@ -121,19 +137,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/09/11/180911/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          180911（DLL注入）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/26/180626/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/04/13/Pwn01/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">180626（内嵌补丁）</div>
+      <div class="article-nav-title">Pwn01</div>
     </a>
   
 </nav>

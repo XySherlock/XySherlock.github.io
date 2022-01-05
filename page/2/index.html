@@ -38,9 +38,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,62 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-postTest" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/postTest/" class="article-date">
+  <time class="post-time" datetime="2018-09-17T17:46:40.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/postTest/">180918(代码注入)</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="代码注入-Code-Injection"><a href="#代码注入-Code-Injection" class="headerlink" title="代码注入(Code Injection)"></a>代码注入(Code Injection)</h1><h3 id="一、代码注入"><a href="#一、代码注入" class="headerlink" title="一、代码注入"></a>一、代码注入</h3><p>代码注入是一种向目标进程插入独立运行代码并使之运行的技术。一般调用CreateRemoteThread（）API以远程线程形式运行插入的代码，所以也被称为线程注入。<br>这个API在DLL注入的时候曾经用来调用自己写的DLL，它的函数原型如下<br>    HANDLE WINAPI CreateRemoteThread(<br>    <strong>in HANDLE hProcess,
+    </strong>in LPSECURITY_ATTRIBUTES lpThreadAttributes,<br>    <strong>in SIZE_T dwStackSize,
+    </strong>in LPTHREAD_START_ROUTINE lpStartAddress,<br>    <strong>in LPVOID lpParameter,
+    </strong>in DWORD dwCreationFlags,<br>    __out LPDWORD lpThreadId<br>    );<br>Dll注入处就曾说ThreadProc（）和LoadLibrary（）都有一个4字节的参数，并返回一个4字节的值。通过CreateRemoteThread（）驱使目标进程调用LoadLibrary（）函数可以加载指定的DLL文件<br>代码注入相比DLL注入要更方便，考虑的事情更少，而且几乎不会留下任何痕迹。</p>
+<h3 id="二、练习"><a href="#二、练习" class="headerlink" title="二、练习"></a>二、练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091801.png" alt="XySher"><br>跟着书上做的实验notepad的pid是C4<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091802.png" alt="XySher"><br>又一个没跑成的实验==行吧 跟着源码走一遍<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091803.png" alt="XySher"><br>    main()函数调用了传入dwPID的InjectCode函数。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091804.png" alt="XySher"><br>直接注入ThreadProc（）进程会导致代码引用地址的内容并不存在于目标进程而出现错误。所以必须同时注入相关字符串以及API地址。（所以本程序中用了THREAD_PARAM结构体接收数据）<br>在InjectCode（）函数中，设置好THREAD_PARAM结构体，然后调用api为data与code分配内存，并将它们注入目标进程，最后调用CreateRemoteThread（）API，执行远程线程。</p>
+<h3 id="三、代码注入调试练习"><a href="#三、代码注入调试练习" class="headerlink" title="三、代码注入调试练习"></a>三、代码注入调试练习</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091805.png" alt="XySher"><br>Debugging option是这里的<br>勾选过后打开<br>代码注入还是失败，跟着书上找。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky1glyhl000soou8vcrdjppb" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-180917" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -105,7 +161,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky1c4m1q000164u86tmieai5" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky1glyg80004oou8t1mqkjl1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -159,7 +215,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky1c4m1z000564u8nfmqe9fu" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky1glyg50003oou828zvc3lk" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -214,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky1c4m1x000464u8ivhc92yn" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky1glyfy0001oou8jurw9rux" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -266,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky1c4m1k000064u86p7y7qh8" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky1glyfq0000oou819edj439" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -324,9 +380,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>14</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>2</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
     </div>
 
 
