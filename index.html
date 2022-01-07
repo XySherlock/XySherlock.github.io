@@ -38,9 +38,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,130 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-Router-Day04" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/07/Router-Day04/" class="article-date">
+  <time class="post-time" datetime="2022-01-07T11:51:21.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br>
+    <span class="post-day">07</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/07/Router-Day04/">Router Day04</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MIPS-Assembly-language"><a href="#MIPS-Assembly-language" class="headerlink" title="MIPS Assembly language"></a>MIPS Assembly language</h2><p>I use the book(34-38) mentioned to learn this, while this url can also be learned:<a href="https://blog.csdn.net/ben_chong/article/details/51794392" target="_blank" rel="noopener">https://blog.csdn.net/ben_chong/article/details/51794392</a>  </p>
+<p>Rs:First source operand register<br>Rt:Second source operand register<br>Rd: store destination operand for operation result  </p>
+<h4 id="Pipeline-Effect"><a href="#Pipeline-Effect" class="headerlink" title="Pipeline Effect"></a><strong>Pipeline Effect</strong></h4><h3 id="1-LOAD-STORE"><a href="#1-LOAD-STORE" class="headerlink" title="(1)LOAD/STORE"></a>(1)LOAD/STORE</h3><p>Load Adress: load a addr or a label<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">la $Rd,Label //$Rd=Label;</span><br></pre></td></tr></table></figure></p>
+<p>Load Immediate: load a immediate into a register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li $Rd,imm //$Rd=imm;</span><br></pre></td></tr></table></figure></p>
+<p>Load Word: load a <strong>word type value</strong> from a given addr to a register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lw $Rt,offset($Rs) //$Rt=MEM[$Rs+0];</span><br></pre></td></tr></table></figure></p>
+<p>Store Word: save the value from source register to given addr<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sw $Rt,offset($Rs) //Mem[$sp+0]=$a0;</span><br></pre></td></tr></table></figure></p>
+<p>Move: pass values from register to register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move $t5,$t1 //$t5=$t1;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-Arithmetic-operation-instructions"><a href="#2-Arithmetic-operation-instructions" class="headerlink" title="(2)Arithmetic operation instructions"></a>(2)Arithmetic operation instructions</h3><p><strong>All these instructions only get register as operand No RAM addr or indirect addressing!!!</strong><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_01.PNG" alt="Image"><br>For multiply and dive , HI&amp;LO shall be used differently.</p>
+<h3 id="3-Class-comparison-instruction"><a href="#3-Class-comparison-instruction" class="headerlink" title="(3)Class comparison instruction"></a>(3)Class comparison instruction</h3><p>MIPS don’t get a flag register. But there is a series of instructions:SLT series of instructions.That can be used as a companion with branch instructions after compare set some register .</p>
+<p>SLT:<strong>Signed</strong>$Rs&lt;$Rt,$Rd=1 or $Rd=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">slt </span>$Rd,$Rs,Rt</span><br></pre></td></tr></table></figure></p>
+<p>SLTI:<strong>Signed</strong> $Rs &lt; Imm, $Rt=1 or $Rt=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">slti </span>$Rt,$Rs,Imm</span><br></pre></td></tr></table></figure></p>
+<p>SLTU:<strong>Unsigned</strong> $Rs&lt;$Rt , $Rd=1 or $Rd=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sltu </span>$Rd,$Rs,$Rt</span><br></pre></td></tr></table></figure></p>
+<p>SLTIU:<strong>UnSigned</strong> $Rs &lt; Imm, $Rt=1 or $Rt=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sltu </span>$Rt,$Rs,Imm</span><br></pre></td></tr></table></figure></p>
+<p>In SLT when there goes 3 arguments , the first is always the one to be set 1 or 0?</p>
+<h3 id="4-SYSCALL"><a href="#4-SYSCALL" class="headerlink" title="(4)SYSCALL"></a>(4)SYSCALL</h3><p>Make a soft interrupt to make a sys call. The [system call number] puts in $v0 , arguments are in $a0~$a3.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_02.PNG" alt="Image">  </p>
+<h3 id="5-Branch-instruction"><a href="#5-Branch-instruction" class="headerlink" title="(5)Branch instruction"></a>(5)Branch instruction</h3><p>Jump by comparing the values between 2 registers. So to jump with imm, put imm into register first.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_03.PNG" alt="Image">  </p>
+<h3 id="6-Jump-instruction"><a href="#6-Jump-instruction" class="headerlink" title="(6)Jump instruction"></a>(6)Jump instruction</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_04.PNG" alt="Image"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2022/01/07/Router-Day04/" data-id="cky4gvtie000k88u8hcxdm458" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/">IoT</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-Data-Structure-01" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/06/Data-Structure-01/" class="article-date">
+  <time class="post-time" datetime="2022-01-06T10:01:41.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br>
+    <span class="post-day">06</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/06/Data-Structure-01/">Data Structure Day01</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>To learn about Data Structure, I choose the course from Tsinghua University on Mooc.</p>
+<h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1><h2 id="A-1"><a href="#A-1" class="headerlink" title="A.1"></a>A.1</h2><p>‘Computing’ &amp; ‘Computer’</p>
+<h2 id="A-2"><a href="#A-2" class="headerlink" title="A.2"></a>A.2</h2><h3 id="‘Rope-Computer’"><a href="#‘Rope-Computer’" class="headerlink" title="‘Rope Computer’"></a>‘Rope Computer’</h3><p>Input:Line L &amp; a point on L called A</p>
+<p>Output:Make a perpendicular to L throu A</p>
+<p>Take 12 part equal rope ,set A+4 B , set A-3 C ;</p>
+<p>then put A&amp;B on rope on the ‘L’ then make a triangel.</p>
+<p>“computer”: tool that can be used <strong>repeatedly and mechanically</strong></p>
+<h2 id="A-3"><a href="#A-3" class="headerlink" title="A.3"></a>A.3</h2><h3 id="‘Ruler-Computer’"><a href="#‘Ruler-Computer’" class="headerlink" title="‘Ruler Computer’"></a>‘Ruler Computer’</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2022/01/06/Data-Structure-01/" data-id="cky4gvthb000a88u8hi21omxy" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DSA/">DSA</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-Router-Day03" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -120,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2022/01/05/Router-Day03/" data-id="cky1glyhe000noou8lzqi94vq" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2022/01/05/Router-Day03/" data-id="cky4gvtik000n88u8meldjpf1" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/">IoT</a></li></ul>
@@ -177,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2019/04/13/Pwn01/" data-id="cky1glyhj000roou8eiszszj1" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2019/04/13/Pwn01/" data-id="cky4gvtjx001188u8krt996d4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn-100-greenie/">Pwn 100%greenie</a></li></ul>
@@ -230,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2019/01/01/Pwn00/" data-id="cky1glyh9000loou8n4bwv1jc" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2019/01/01/Pwn00/" data-id="cky4gvtjy001288u8xcr9vs9f" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Pwn-100-greenie/">Pwn 100%greenie</a></li></ul>
@@ -280,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/11/29/181130/" data-id="cky1glyid000yoou85k8oti07" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/11/29/181130/" data-id="cky4gvtia000i88u8g0bp67jp" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -333,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/11/11/hello-world/" data-id="cky1glyhh000qoou8dj5ln9x2" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/11/11/hello-world/" data-id="cky4gvtir000q88u8unbr9lhl" class="article-share-link">分享</a>
       
       
     </footer>
@@ -398,7 +522,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/10/04/181004/" data-id="cky1glygs000foou81360u16n" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/10/04/181004/" data-id="cky4gvtit000s88u8iho45tvg" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -459,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/21/180921-1/" data-id="cky1glygk000doou82obj2ie3" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/21/180921-1/" data-id="cky4gvtjf000y88u83f70m2vj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -515,111 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cky1glygh000aoou8892rhvsg" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-180919" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/19/180919/" class="article-date">
-  <time class="post-time" datetime="2018-09-19T11:31:56.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">19</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/19/180919/">180919(API钩取)</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="钩取"><a href="#钩取" class="headerlink" title="钩取"></a>钩取</h1><h3 id="一、钩取"><a href="#一、钩取" class="headerlink" title="一、钩取"></a>一、钩取</h3><p>钩取是一种截取信息，更改程序执行流向、添加新功能的技术。<br>API（Application Programming Interface，应用程序编程接口）。用户使用系统资源时，通过微软提供的Win32API向系统内核（Kernel）申请。<br>钩取API可以①自由选择和api调用前后使用钩子代码②查看或操作传入API的参数或API的返回值③取消对API的调用，或更改执行流<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091901.png" alt="XySher"><br>调试器拥有被调试进程的所有权限！<br>代码注入更难以被杀毒软件检测到。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cky1glyge0008oou8g0h7lecy" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-  
-    <article id="post-180918" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/18/180918/" class="article-date">
-  <time class="post-time" datetime="2018-09-18T11:21:52.000Z" itemprop="datePublished">
-    <span class="post-month">9月</span><br>
-    <span class="post-day">18</span>
-  </time>
-</a>
-   
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/18/180918/">180918(使用汇编编写注入代码)</a>
-    </h1>
-  
-
-        <div>
-          
-          
-              
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="使用汇编编写注入代码"><a href="#使用汇编编写注入代码" class="headerlink" title="使用汇编编写注入代码"></a>使用汇编编写注入代码</h1><h3 id="一、目标："><a href="#一、目标：" class="headerlink" title="一、目标："></a>一、目标：</h3><p>使用汇编可以生成比C语言更自由、更灵活的代码。将纯汇编写的ThreadProc()函数注入目标进程。</p>
-<h3 id="二、OD汇编"><a href="#二、OD汇编" class="headerlink" title="二、OD汇编"></a>二、OD汇编</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918001.png" alt="XySher"><br>Ctrl+G能点击这个NewOriginhere，也就是我们的 此处为EIP选项。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918002.png" alt="XySher"><br>(原来空格打游戏是跳来跳去，总按，现在玩逆向，空格改指令，快乐的1p。)<br>勾选这个会把输入代码比已有代码段的地方填充为NOP（No Operation）指令，以整体对齐代码(Code Alignment).<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918003.png" alt="XySher"><br>照着书上填完的汇编代码红了一片…<br>把字符串填了个XySherlock然后为了保持大小填了两个00 按书上对应的灰色区域就是这里的<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918004.png" alt="XySher"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918005.png" alt="XySher"><br>我们需要先点击这个分析视为再分析才有效<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918006.png" alt="XySher"><br>嘿嘿，快乐。</p>
-<p>在后面的操作中发现了一个小小的有趣的地方<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918007.png" alt="XySher"><br>在连续打入感叹号的时候会有一条被识别为 and dword ptr ds:[ecx],esp.<br>这个地方如果开了dep就会将一个部分标记为不可执行，如果没开dep的话可以进行一下利用，输入3的倍数余2的“！”来在这个位置添加一个and dword ptr ds:[ecx],esp指令</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cky1glygb0005oou83yimocg6" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cky4gvtio000p88u89kl17pm3" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -677,9 +697,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
 
 

@@ -3,6 +3,40 @@
   
     
     <entry>
+      <title>Router Day04</title>
+      <link href="/2022/01/07/Router-Day04/"/>
+      <url>/2022/01/07/Router-Day04/</url>
+      
+        <content type="html"><![CDATA[<h2 id="MIPS-Assembly-language"><a href="#MIPS-Assembly-language" class="headerlink" title="MIPS Assembly language"></a>MIPS Assembly language</h2><p>I use the book(34-38) mentioned to learn this, while this url can also be learned:<a href="https://blog.csdn.net/ben_chong/article/details/51794392" target="_blank" rel="noopener">https://blog.csdn.net/ben_chong/article/details/51794392</a>  </p><p>Rs:First source operand register<br>Rt:Second source operand register<br>Rd: store destination operand for operation result  </p><h4 id="Pipeline-Effect"><a href="#Pipeline-Effect" class="headerlink" title="Pipeline Effect"></a><strong>Pipeline Effect</strong></h4><h3 id="1-LOAD-STORE"><a href="#1-LOAD-STORE" class="headerlink" title="(1)LOAD/STORE"></a>(1)LOAD/STORE</h3><p>Load Adress: load a addr or a label<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">la $Rd,Label //$Rd=Label;</span><br></pre></td></tr></table></figure></p><p>Load Immediate: load a immediate into a register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li $Rd,imm //$Rd=imm;</span><br></pre></td></tr></table></figure></p><p>Load Word: load a <strong>word type value</strong> from a given addr to a register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lw $Rt,offset($Rs) //$Rt=MEM[$Rs+0];</span><br></pre></td></tr></table></figure></p><p>Store Word: save the value from source register to given addr<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sw $Rt,offset($Rs) //Mem[$sp+0]=$a0;</span><br></pre></td></tr></table></figure></p><p>Move: pass values from register to register<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">move $t5,$t1 //$t5=$t1;</span><br></pre></td></tr></table></figure></p><h3 id="2-Arithmetic-operation-instructions"><a href="#2-Arithmetic-operation-instructions" class="headerlink" title="(2)Arithmetic operation instructions"></a>(2)Arithmetic operation instructions</h3><p><strong>All these instructions only get register as operand No RAM addr or indirect addressing!!!</strong><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_01.PNG" alt="Image"><br>For multiply and dive , HI&amp;LO shall be used differently.</p><h3 id="3-Class-comparison-instruction"><a href="#3-Class-comparison-instruction" class="headerlink" title="(3)Class comparison instruction"></a>(3)Class comparison instruction</h3><p>MIPS don’t get a flag register. But there is a series of instructions:SLT series of instructions.That can be used as a companion with branch instructions after compare set some register .</p><p>SLT:<strong>Signed</strong>$Rs&lt;$Rt,$Rd=1 or $Rd=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">slt </span>$Rd,$Rs,Rt</span><br></pre></td></tr></table></figure></p><p>SLTI:<strong>Signed</strong> $Rs &lt; Imm, $Rt=1 or $Rt=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">slti </span>$Rt,$Rs,Imm</span><br></pre></td></tr></table></figure></p><p>SLTU:<strong>Unsigned</strong> $Rs&lt;$Rt , $Rd=1 or $Rd=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sltu </span>$Rd,$Rs,$Rt</span><br></pre></td></tr></table></figure></p><p>SLTIU:<strong>UnSigned</strong> $Rs &lt; Imm, $Rt=1 or $Rt=0<br><figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sltu </span>$Rt,$Rs,Imm</span><br></pre></td></tr></table></figure></p><p>In SLT when there goes 3 arguments , the first is always the one to be set 1 or 0?</p><h3 id="4-SYSCALL"><a href="#4-SYSCALL" class="headerlink" title="(4)SYSCALL"></a>(4)SYSCALL</h3><p>Make a soft interrupt to make a sys call. The [system call number] puts in $v0 , arguments are in $a0~$a3.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_02.PNG" alt="Image">  </p><h3 id="5-Branch-instruction"><a href="#5-Branch-instruction" class="headerlink" title="(5)Branch instruction"></a>(5)Branch instruction</h3><p>Jump by comparing the values between 2 registers. So to jump with imm, put imm into register first.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_03.PNG" alt="Image">  </p><h3 id="6-Jump-instruction"><a href="#6-Jump-instruction" class="headerlink" title="(6)Jump instruction"></a>(6)Jump instruction</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220107_04.PNG" alt="Image"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> IoT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Data Structure Day01</title>
+      <link href="/2022/01/06/Data-Structure-01/"/>
+      <url>/2022/01/06/Data-Structure-01/</url>
+      
+        <content type="html"><![CDATA[<p>To learn about Data Structure, I choose the course from Tsinghua University on Mooc.</p><h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1><h2 id="A-1"><a href="#A-1" class="headerlink" title="A.1"></a>A.1</h2><p>‘Computing’ &amp; ‘Computer’</p><h2 id="A-2"><a href="#A-2" class="headerlink" title="A.2"></a>A.2</h2><h3 id="‘Rope-Computer’"><a href="#‘Rope-Computer’" class="headerlink" title="‘Rope Computer’"></a>‘Rope Computer’</h3><p>Input:Line L &amp; a point on L called A</p><p>Output:Make a perpendicular to L throu A</p><p>Take 12 part equal rope ,set A+4 B , set A-3 C ;</p><p>then put A&amp;B on rope on the ‘L’ then make a triangel.</p><p>“computer”: tool that can be used <strong>repeatedly and mechanically</strong></p><h2 id="A-3"><a href="#A-3" class="headerlink" title="A.3"></a>A.3</h2><h3 id="‘Ruler-Computer’"><a href="#‘Ruler-Computer’" class="headerlink" title="‘Ruler Computer’"></a>‘Ruler Computer’</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> DSA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Router Day03：Getting Started</title>
       <link href="/2022/01/05/Router-Day03/"/>
       <url>/2022/01/05/Router-Day03/</url>

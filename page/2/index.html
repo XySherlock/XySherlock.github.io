@@ -38,9 +38,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,110 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-180919" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/19/180919/" class="article-date">
+  <time class="post-time" datetime="2018-09-19T11:31:56.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">19</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/19/180919/">180919(API钩取)</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="钩取"><a href="#钩取" class="headerlink" title="钩取"></a>钩取</h1><h3 id="一、钩取"><a href="#一、钩取" class="headerlink" title="一、钩取"></a>一、钩取</h3><p>钩取是一种截取信息，更改程序执行流向、添加新功能的技术。<br>API（Application Programming Interface，应用程序编程接口）。用户使用系统资源时，通过微软提供的Win32API向系统内核（Kernel）申请。<br>钩取API可以①自由选择和api调用前后使用钩子代码②查看或操作传入API的参数或API的返回值③取消对API的调用，或更改执行流<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18091901.png" alt="XySher"><br>调试器拥有被调试进程的所有权限！<br>代码注入更难以被杀毒软件检测到。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cky4gvth5000588u8o5uhdtwm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+  
+    <article id="post-180918" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/180918/" class="article-date">
+  <time class="post-time" datetime="2018-09-18T11:21:52.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/180918/">180918(使用汇编编写注入代码)</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用汇编编写注入代码"><a href="#使用汇编编写注入代码" class="headerlink" title="使用汇编编写注入代码"></a>使用汇编编写注入代码</h1><h3 id="一、目标："><a href="#一、目标：" class="headerlink" title="一、目标："></a>一、目标：</h3><p>使用汇编可以生成比C语言更自由、更灵活的代码。将纯汇编写的ThreadProc()函数注入目标进程。</p>
+<h3 id="二、OD汇编"><a href="#二、OD汇编" class="headerlink" title="二、OD汇编"></a>二、OD汇编</h3><p><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918001.png" alt="XySher"><br>Ctrl+G能点击这个NewOriginhere，也就是我们的 此处为EIP选项。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918002.png" alt="XySher"><br>(原来空格打游戏是跳来跳去，总按，现在玩逆向，空格改指令，快乐的1p。)<br>勾选这个会把输入代码比已有代码段的地方填充为NOP（No Operation）指令，以整体对齐代码(Code Alignment).<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918003.png" alt="XySher"><br>照着书上填完的汇编代码红了一片…<br>把字符串填了个XySherlock然后为了保持大小填了两个00 按书上对应的灰色区域就是这里的<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918004.png" alt="XySher"><br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918005.png" alt="XySher"><br>我们需要先点击这个分析视为再分析才有效<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918006.png" alt="XySher"><br>嘿嘿，快乐。</p>
+<p>在后面的操作中发现了一个小小的有趣的地方<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/180918007.png" alt="XySher"><br>在连续打入感叹号的时候会有一条被识别为 and dword ptr ds:[ecx],esp.<br>这个地方如果开了dep就会将一个部分标记为不可执行，如果没开dep的话可以进行一下利用，输入3的倍数余2的“！”来在这个位置添加一个and dword ptr ds:[ecx],esp指令</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cky4gvth4000488u8corkopqm" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-postTest" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky1glyhl000soou8vcrdjppb" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky4gvtjc000x88u8qnin6wce" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -161,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky1glyg80004oou8t1mqkjl1" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky4gvth2000388u8m2plz3v0" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -215,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky1glyg50003oou828zvc3lk" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky4gvth9000888u87h9i95lv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -270,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky1glyfy0001oou8jurw9rux" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky4gvtgv000188u8qnvs4kat" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -322,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky1glyfq0000oou819edj439" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky4gvtgj000088u82bdp1exv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -380,9 +484,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>15</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>3</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
 
 
