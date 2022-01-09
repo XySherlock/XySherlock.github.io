@@ -3,7 +3,24 @@
   
     
     <entry>
-      <title>Router Day04</title>
+      <title>Router Day05 ：HTTP</title>
+      <link href="/2022/01/09/Router-Day05/"/>
+      <url>/2022/01/09/Router-Day05/</url>
+      
+        <content type="html"><![CDATA[<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>Web server is vulnerable in router. And for communicating with the web server, HTTP protocol is essential. </p><p>For HTTP request ,I guess the writer used the IBM Doc.(<a href="https://www.ibm.com/docs/en/cics-ts/5.3?topic=protocol-http-requests" target="_blank" rel="noopener">https://www.ibm.com/docs/en/cics-ts/5.3?topic=protocol-http-requests</a>)</p><p>A correctly composed HTTP request contains the following elements:<br>1.A request line.<br>2.A series of HTTP headers, or header fields.<br>3.A message body, if needed.  </p><h3 id="HTTP-request-line"><a href="#HTTP-request-line" class="headerlink" title="HTTP request line"></a>HTTP request line</h3><p>Request line begins with a method,separated by spaces ,followed by requested URI and version of protocol.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method Request-URI HTTP-Version CRLF // template</span><br><span class="line">GET /software/htp/cics/index.html HTTP/1.1 // instance</span><br></pre></td></tr></table></figure></p><p>CRLF means ‘Carriage return and line feed ‘.And Method can be seen from the pic below.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220109_01.PNG" alt="Image"> </p><p>GET: just simple coding, Using GET to submit form data introduces security risks. And it can’t submit large amouts of data.<br>POST: A replacement for GET. Used to submit form data to Web server.Especially large amounts of data.</p><h3 id="HTTP-message-header"><a href="#HTTP-message-header" class="headerlink" title="HTTP message header"></a>HTTP message header</h3><p>HTTP message is formed with C-S request and S-C response.HTTP message inclues request message and response message. We can structure this as fuzzing data. Request should be cared while responses do not.</p><p>Request message header allow clients send request as additional information and the information of client itself.<br><strong>The format is like : Name +:+space+value</strong><br>message header:<br>Accept :Tell what source c wants to acc.<br>Accept-ENcoding: Specify acceptable content encoding.<br><strong>Cookie: Give server cookie check.</strong><br>Accept-Language: Specify a language.<br>Authorizaiton: Prove the right of  C to check some source. (S-C:401 C-S:Authrization)<br>Host: Specify the host and port number of the source provider. Usually taken from HTTP URL. <strong>Necessary when sending request.</strong><br>User-Agent: Allow C give its OS,browser,and other attributes to S. It’s not necessary.</p><h3 id="HTTP-message-body"><a href="#HTTP-message-body" class="headerlink" title="HTTP message body"></a>HTTP message body</h3><p><strong>Between header and body there is a blank line means the end of header</strong><br>Body includes the submit from C of enquiry string message or etc.</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> IoT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Router Day04：MIPS32</title>
       <link href="/2022/01/07/Router-Day04/"/>
       <url>/2022/01/07/Router-Day04/</url>
       

@@ -38,7 +38,7 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>18</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>
@@ -65,6 +65,62 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-180920" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/20/180920/" class="article-date">
+  <time class="post-time" datetime="2018-09-20T11:36:22.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/20/180920/">180920(记事本WriteFileAPI钩取+调试器)</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="记事本WriteFileAPI钩取"><a href="#记事本WriteFileAPI钩取" class="headerlink" title="记事本WriteFileAPI钩取"></a>记事本WriteFileAPI钩取</h1><p>调试器（Debugger）进行调试的程序<br>被调试者（Debuggee）：被调试的程序<br>调试器用来确认被调试者是否正确运行，发现程序错误。调试器能够逐一执行被调试者的指令，拥有对<font color="#ff0000" size="3">寄存器与内存</font>的<font color="#ff0000" size="3">所有</font>访问权限。<br>调试器无法处理或者不关心的调试事件最终由OS处理。<br>EXCEPTION_BREAKPOINT异常是必须被处理的。断点对应的汇编指令为INT3,IA-32指令为0xCC。代码调试遇到INT3指令即中断运行，异常事件被传送到调试器。</p>
+<p>实验中首先将notepad用od打开，然后进行一次操作，在od中使用api设置断点手法，通过对进程栈的查看找到数据缓冲区的地址，可以进而通过对目标地址内容的操作达到对程序运行的字符串的修改.我们通过这种方法得知了我们应该修改被调试进程内存的哪一部分。</p>
+<p>注意我们在设置断点后，起始地址遇到INT3（0xCC）指令就，EIP的值会增加1个字节.（被调试者的地址因此改变了），但OD等调试器不会显示INT3指令，会自动把字节恢复。</p>
+<p>为了防止程序执行流陷入死循环，应该脱钩，即修改起始地址处的0xCC为0x6A，取消对API的钩取。<br>通过DebugActiveProcess()API将调试器附加到该运行的进程上.<br>WaitForDebugEvent（）发生调试事件，就会将相关事件信息设置到其第一个参数的变量，然后立刻返回。<br>ReadProcessMemory()来获取第一个字节并暂时存储，WriteProcessMemory()来把第一个字节下断点。</p>
+<p>脱钩过程不是必须的，可以取消对相关API的调用，也可以调用用户自定义的函数.<br>Windows OS是一个多线程（multi-thread）操作系统，同一进程 可以同时运行多个线程。<br>必须在调试器终止前“脱钩”</p>
+<h1 id="调试器"><a href="#调试器" class="headerlink" title="调试器"></a>调试器</h1><h3 id="WinDbg"><a href="#WinDbg" class="headerlink" title="WinDbg"></a>WinDbg</h3><p>OD和IDA pro都是用户态调试器，WinDbg不仅是用户态调试器，还是内核态调试器，主要用于内核模式调试。可以用来直接下载系统文件符号（Symbol），获取系统内部结构体及API的相关信息。还能用来读取、分析windows OS的转储文件。<br>    图形用户界面比较差。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cky76osko000aewu83i95k46w" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-180919" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -103,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cky4gvth5000588u8o5uhdtwm" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cky76oska0001ewu8hnpoovp9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -156,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cky4gvth4000488u8corkopqm" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cky76oskm0008ewu8lkpeynyv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -212,7 +268,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky4gvtjc000x88u8qnin6wce" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky76osl5000newu8d4hn78xq" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -265,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky4gvth2000388u8m2plz3v0" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky76oskh0004ewu8fpohrp7i" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -319,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky4gvth9000888u87h9i95lv" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky76oskw000dewu80en8qkda" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -374,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky4gvtgv000188u8qnvs4kat" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky76oskf0003ewu87glfn64y" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -426,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky4gvtgj000088u82bdp1exv" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky76osk60000ewu8aemukaw4" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -484,7 +540,7 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>17</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>18</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
       <a href="/tags"><div><strong>4</strong><br>标签</div></a>
     </div>

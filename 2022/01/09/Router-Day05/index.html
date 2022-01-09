@@ -3,15 +3,22 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Tag: DSA | XySherlock&#39;s Secret Base</title>
+  <title>Router Day05 ：HTTP | XySherlock&#39;s Secret Base</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XySherlock&#39;s Secret Base">
-<meta property="og:url" content="https://XySherlock.github.io/tags/DSA/index.html">
+  <meta name="description" content="HTTPWeb server is vulnerable in router. And for communicating with the web server, HTTP protocol is essential.  For HTTP request ,I guess the writer used the IBM Doc.(https://www.ibm.com/docs/en/cics-">
+<meta name="keywords" content="IoT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Router Day05 ：HTTP">
+<meta property="og:url" content="https://XySherlock.github.io/2022/01/09/Router-Day05/index.html">
 <meta property="og:site_name" content="XySherlock&#39;s Secret Base">
+<meta property="og:description" content="HTTPWeb server is vulnerable in router. And for communicating with the web server, HTTP protocol is essential.  For HTTP request ,I guess the writer used the IBM Doc.(https://www.ibm.com/docs/en/cics-">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220109_01.PNG">
+<meta property="og:updated_time" content="2022-01-09T11:39:03.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XySherlock&#39;s Secret Base">
+<meta name="twitter:title" content="Router Day05 ：HTTP">
+<meta name="twitter:description" content="HTTPWeb server is vulnerable in router. And for communicating with the web server, HTTP protocol is essential.  For HTTP request ,I guess the writer used the IBM Doc.(https://www.ibm.com/docs/en/cics-">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220109_01.PNG">
   
     <link rel="alternate" href="/atom.xml" title="XySherlock&#39;s Secret Base" type="application/atom+xml">
   
@@ -64,42 +71,74 @@
   </div>
 </div>
 
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap animated rubberBand">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/01/06/Data-Structure-01/" class="archive-article-date">
-  <time class="post-time" datetime="2022-01-06T10:01:41.000Z" itemprop="datePublished">
+        <section id="main"><article id="post-Router-Day05" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/09/Router-Day05/" class="article-date">
+  <time class="post-time" datetime="2022-01-09T08:38:03.000Z" itemprop="datePublished">
     <span class="post-month">1月</span><br>
-    <span class="post-day">06</span>
+    <span class="post-day">09</span>
   </time>
 </a>
-      
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/01/06/Data-Structure-01/">Data Structure Day01</a>
+    <h1 class="article-title" itemprop="name">
+      Router Day05 ：HTTP
     </h1>
   
 
-    </header>
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>Web server is vulnerable in router. And for communicating with the web server, HTTP protocol is essential. </p>
+<p>For HTTP request ,I guess the writer used the IBM Doc.(<a href="https://www.ibm.com/docs/en/cics-ts/5.3?topic=protocol-http-requests" target="_blank" rel="noopener">https://www.ibm.com/docs/en/cics-ts/5.3?topic=protocol-http-requests</a>)</p>
+<p>A correctly composed HTTP request contains the following elements:<br>1.A request line.<br>2.A series of HTTP headers, or header fields.<br>3.A message body, if needed.  </p>
+<h3 id="HTTP-request-line"><a href="#HTTP-request-line" class="headerlink" title="HTTP request line"></a>HTTP request line</h3><p>Request line begins with a method,separated by spaces ,followed by requested URI and version of protocol.<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method Request-URI HTTP-Version CRLF // template</span><br><span class="line">GET /software/htp/cics/index.html HTTP/1.1 // instance</span><br></pre></td></tr></table></figure></p>
+<p>CRLF means ‘Carriage return and line feed ‘.And Method can be seen from the pic below.<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/220109_01.PNG" alt="Image"> </p>
+<p>GET: just simple coding, Using GET to submit form data introduces security risks. And it can’t submit large amouts of data.<br>POST: A replacement for GET. Used to submit form data to Web server.Especially large amounts of data.</p>
+<h3 id="HTTP-message-header"><a href="#HTTP-message-header" class="headerlink" title="HTTP message header"></a>HTTP message header</h3><p>HTTP message is formed with C-S request and S-C response.HTTP message inclues request message and response message. We can structure this as fuzzing data. Request should be cared while responses do not.</p>
+<p>Request message header allow clients send request as additional information and the information of client itself.<br><strong>The format is like : Name +:+space+value</strong><br>message header:<br>Accept :Tell what source c wants to acc.<br>Accept-ENcoding: Specify acceptable content encoding.<br><strong>Cookie: Give server cookie check.</strong><br>Accept-Language: Specify a language.<br>Authorizaiton: Prove the right of  C to check some source. (S-C:401 C-S:Authrization)<br>Host: Specify the host and port number of the source provider. Usually taken from HTTP URL. <strong>Necessary when sending request.</strong><br>User-Agent: Allow C give its OS,browser,and other attributes to S. It’s not necessary.</p>
+<h3 id="HTTP-message-body"><a href="#HTTP-message-body" class="headerlink" title="HTTP message body"></a>HTTP message body</h3><p><strong>Between header and body there is a blank line means the end of header</strong><br>Body includes the submit from C of enquiry string message or etc.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2022/01/09/Router-Day05/" data-id="cky76osl0000iewu8nu4mn69l" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IoT/">IoT</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/07/Router-Day04/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Router Day04：MIPS32</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
 
 </section>
         
