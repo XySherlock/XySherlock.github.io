@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://XySherlock.github.io/"/>
-  <updated>2022-01-09T11:39:03.707Z</updated>
+  <updated>2022-03-28T04:18:48.030Z</updated>
   <id>https://XySherlock.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>XysDiary</title>
+    <link href="https://XySherlock.github.io/2999/01/01/diary/"/>
+    <id>https://XySherlock.github.io/2999/01/01/diary/</id>
+    <published>2998-12-31T16:00:01.000Z</published>
+    <updated>2022-03-28T04:18:48.030Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="22-03-28"><a href="#22-03-28" class="headerlink" title="22-03-28"></a>22-03-28</h1><p>收到恒润的拒信了。投大厂杳无音信，小厂面完就拒，已经逐渐习惯了。技术不行又贪玩还楞是这样的呀。考虑三战了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;22-03-28&quot;&gt;&lt;a href=&quot;#22-03-28&quot; class=&quot;headerlink&quot; title=&quot;22-03-28&quot;&gt;&lt;/a&gt;22-03-28&lt;/h1&gt;&lt;p&gt;收到恒润的拒信了。投大厂杳无音信，小厂面完就拒，已经逐渐习惯了。技术不行又贪玩还楞是这样的呀
+      
+    
+    </summary>
+    
+    
+      <category term="Diary" scheme="https://XySherlock.github.io/tags/Diary/"/>
+    
+  </entry>
   
   <entry>
     <title>Router Day05 ：HTTP</title>

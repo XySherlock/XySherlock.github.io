@@ -38,9 +38,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>18</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>19</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
     </div>
     <ul class="blog-link">
      
@@ -65,6 +65,67 @@
 </div>
 
         <section id="main">
+  
+    <article id="post-180921-1" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/21/180921-1/" class="article-date">
+  <time class="post-time" datetime="2018-09-21T11:47:01.000Z" itemprop="datePublished">
+    <span class="post-month">9月</span><br>
+    <span class="post-day">21</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/21/180921-1/">180921（计算器中显示字）</a>
+    </h1>
+  
+
+        <div>
+          
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过DLL注入实现IAT钩取的技术。较为好实现，但是如果目标API不在目标进程IAT中，就无法使用该技术.(动态加载dll=凉凉)</p>
+<p>为了确认需要钩取的API，可以使用PEView查看导入的API，然后对API进行文档查询.</p>
+<p>查询发现计算器的SetWIndowTextW()、SetDlgItemTextW()比较引人注目（？？？），而后者又调用了前者，所以我们假设只要钩取前者就ＯＫ．</p>
+<p>（ＡＰＩ后面跟的是Ｗ就是说是宽字符（Ｗｉｄｅ　character）版本．若后面跟的是Ａ则是ＡＳＣＩＩ码字符版本。宽字符说的是Ｕｎｉｃｏｄｅ码。）<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092101.png" alt="XySher"><br>跟着流程查看栈窗口。<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092102.png" alt="XySher"><br>覆写时要逆序进行。每个Ｕｎｉｃｏｄｅ中的汉字占２个字节<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092103.png" alt="XySher"><br>程序开始时，ＰＥ装载器会将ｕｓｅｒ３２．ＳｅｔＷｉｎｄｏｗＴｅｘｔＷ（）ＡＰＩ地址记录到该地址（０１００１１１０），该地址是ＩＡＴ区域。</p>
+<p>而我们钩取ＩＡＴ过后，将ＩＡＴ保存的ＡＰＩ起始地址变为用户函数的起始地址。</p>
+<p>像这样，先向目标进程注入用户ＤＬＬ，然后在进程的ＩＡＴ区域中更改４个字节大小的地址，就可以轻松钩取指定ＡＰＩ。这种技术也称为ＩＡＴ钩取技术。</p>
+<p>练习实例<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092104.png" alt="XySher"><br>诶这次居然成了　舒服<br><img src="https://raw.githubusercontent.com/XySherlock/Images/master/screenshots/18092105.png" alt="XySher"><br>．．．下载下来的是原版　难免　难免．</p>
+<p>在实际操作中，必须先确定提供ＡＰＩ的ＤＬＬ已经正常加载到相应进程，如果相应ＡＰＩ在钩取前尚未被加载，则应该先调用ＬｏａｄＬｉｂｒａｒｙ（）ＡＰＩ加载它。</p>
+<p>把数字和中文进行１：１的对应可以不加任何修改地使用原缓冲区。</p>
+<p>在IAT中查找到user23.dll对应的IID后，在IAT中查找SetWindowTextW API的位置，然后修改其中内容，从而实现对API的钩取。<br>MySetWindowTextW（）函数主要有2个功能，它首先将阿拉伯数字转换为中文数字（字符串），然后调用原来的user32.SetWindowTextW()API。</p>
+<p>隐藏进程<br>全局钩取（Global Hooking），能钩取所有进程。<br>修改API代码（Code Patch）实现API钩取。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://XySherlock.github.io/2018/09/21/180921-1/" data-id="cl1a78kke000fsgu85i3z0s8k" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
   
     <article id="post-180920" class="wow slideInRight article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
@@ -108,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cky76osko000aewu83i95k46w" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/20/180920/" data-id="cl1a78kkc000csgu80b1dtg6k" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -159,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cky76oska0001ewu8hnpoovp9" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/19/180919/" data-id="cl1a78kkb000asgu8p9xylb9f" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -212,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cky76oskm0008ewu8lkpeynyv" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/18/180918/" data-id="cl1a78kk30005sgu8nqwkunik" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -268,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cky76osl5000newu8d4hn78xq" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/18/postTest/" data-id="cl1a78kl00011sgu8e53trewr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -321,7 +382,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cky76oskh0004ewu8fpohrp7i" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/17/180917/" data-id="cl1a78kk70007sgu8ga9t15sr" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -375,7 +436,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cky76oskw000dewu80en8qkda" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/11/180911/" data-id="cl1a78kk50006sgu8orv9gykb" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -430,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cky76oskf0003ewu87glfn64y" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/09/07/180907/" data-id="cl1a78kjy0002sgu8b0gmb3g5" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -482,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cky76osk60000ewu8aemukaw4" class="article-share-link">分享</a>
+      <a data-url="https://XySherlock.github.io/2018/06/26/180626/" data-id="cl1a78kjs0000sgu8k0u8beer" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li></ul>
@@ -540,9 +601,9 @@
     <h2 class="author">XySherlock</h2>
     <h3 class="description"></h3>
     <div class="count-box">
-      <a href="/archives"><div><strong>18</strong><br>文章</div></a>
+      <a href="/archives"><div><strong>19</strong><br>文章</div></a>
       <a href="/categories"><div><strong>0</strong><br>分类</div></a>
-      <a href="/tags"><div><strong>4</strong><br>标签</div></a>
+      <a href="/tags"><div><strong>5</strong><br>标签</div></a>
     </div>
 
 
